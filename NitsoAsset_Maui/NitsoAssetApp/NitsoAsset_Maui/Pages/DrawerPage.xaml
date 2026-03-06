@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pages:CustomPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:pages="clr-namespace:NitsoAsset_Maui.Pages.Base"
+                  Title="{Binding Title}" BackgroundColor="#070e13"
+                  x:Class="NitsoAsset_Maui.Pages.DrawerPage">
+    <pages:CustomPage.Content>
+        <Grid BackgroundColor="#070e13" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Image Source="qr_preview" Margin="0,20,0,0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Aspect="AspectFill" />
+            <StackLayout Padding="0" Spacing="0" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout Padding="10,10,10,10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <CollectionView x:Name="_drawerflowlist" BackgroundColor="Transparent" ItemsSource="{Binding Drawerdatalist}">
+                         <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="20,10,15,10" Margin="0,5,0,5" ColumnSpacing="0" BackgroundColor="Transparent">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <!--<Image HeightRequest="24" WidthRequest="24" Grid.Column="0" Aspect="AspectFit" Source="{Binding drawerpage_gridimage}" VerticalOptions="Center" HorizontalOptions="Start" />-->
+                                    <StackLayout Grid.Column="1" Orientation="Horizontal" Spacing="2">
+                                        <Label Text="{Binding drawerpage_gridlabel}" FontFamily="{DynamicResource OpenSansBold}" FontAttributes="Bold" FontSize="15" TextColor="White" VerticalOptions="Center" />
+                                        <!--<Frame IsVisible="{Binding IsVisibleBadge}" BackgroundColor="{DynamicResource AppRedColor}" HasShadow="false" HeightRequest="18" WidthRequest="18" CornerRadius="9" Padding="0" VerticalOptions="Start" HorizontalOptions="Start">
+                                            <Label Text="{Binding BadgeCount}" TextColor="White" FontSize="11" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
+                                        </Frame>-->
+                                    </StackLayout>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Grid_ItemTapCommand}" CommandParameter="{Binding .}" />
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </pages:CustomPage.Content>
+</pages:CustomPage>

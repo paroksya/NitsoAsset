@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:CustomPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:pages="clr-namespace:NitsoAsset.Pages.Base;assembly=NitsoAsset"
+                  xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                  xmlns:controls="clr-namespace:NitsoAsset.Assets.Controls"
+                  xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+                  xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+                  xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                  xmlns:sh="clr-namespace:Sharpnado.Shades;assembly=Sharpnado.Shadows"
+                  xmlns:ffImageLoading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                  ios:Page.UseSafeArea="true"
+                  NavigationPage.HasNavigationBar="True"
+                  x:Class="NitsoAsset.Pages.DashBoardPage">
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+            <Label Text="{Binding Title}" TextColor="{DynamicResource White}" FontFamily="{DynamicResource OpenSansBold}"
+                    FontSize="{DynamicResource FontSize18}" HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
+            <ImageButton Source="poweroff" HeightRequest="25" WidthRequest="25" HorizontalOptions="End"
+                          Margin="0,0,10,0" VerticalOptions="Center" BackgroundColor="Transparent"
+                          Command="{Binding LogoutCommand}"/>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <pages:CustomPage.Content>
+        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never">
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" BackgroundColor="{DynamicResource BlueColor}">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                        <Label Text="Welcome :" TextColor="{DynamicResource White}" FontFamily="{DynamicResource OpenSansBold}"
+                               FontSize="{DynamicResource FontSize18}" VerticalOptions="Center"
+                               Padding="{OnPlatform Android='14,0,0,0',iOS='10,0,0,0'}"/>
+                        <Label Text="{Binding UserNameDisplay}" TextColor="{DynamicResource White}" FontFamily="{DynamicResource OpenSansBold}"
+                               FontSize="{DynamicResource FontSize18}" VerticalOptions="Center"
+                               Padding="{OnPlatform Android='7,0,0,0',iOS='5,0,0,0'}"/>
+                    </StackLayout>
+                    <StackLayout Padding="0,0,0,5" Spacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                         <Label Text="{Binding CompanyNameDisplay}" TextColor="{DynamicResource White}"
+                                FontFamily="{DynamicResource OpenSansBold}" FontSize="{DynamicResource FontSize18}"
+                                HorizontalOptions="StartAndExpand" Padding="{OnPlatform Android='14,0,0,5',iOS='10,0,0,5'}"/>
+                    </StackLayout>
+                </StackLayout>
+                <Grid RowSpacing="20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Row="0" Padding="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <FlexLayout x:Name="DashboardItemsList" BindableLayout.ItemsSource="{Binding DashboardItems}"
+                                JustifyContent="Center" Wrap="Wrap" HorizontalOptions="CenterAndExpand"
+                                AlignContent="SpaceBetween" AlignItems="Center" Margin="40,0,40,0">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <sh:Shadows CornerRadius="15" Shades="{sh:SingleShade Offset='0, 10', Opacity=0.7,Color=#19000000}">
+                                        <yummy:PancakeView HorizontalOptions="CenterAndExpand" Padding="0" WidthRequest="130"
+                                                       HeightRequest="130" CornerRadius="15" Margin="10"
+                                                       VerticalOptions="CenterAndExpand" BackgroundColor="{Binding BgColor}">
+                                            <Label Text="{Binding Title}" TextColor="{DynamicResource White}" FontSize="11" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="Center"/>
+                                            <yummy:PancakeView.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={x:Reference DashboardItemsList}, Path=BindingContext.DashboardItemTapCommand}" CommandParameter="{Binding .}" />
+                                            </yummy:PancakeView.GestureRecognizers>
+                                        </yummy:PancakeView>
+                                    </sh:Shadows>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </FlexLayout>
+                    </StackLayout>
+                    <!--<StackLayout Grid.Row="1" Spacing="10" BackgroundColor="Transparent">
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <Label Text="Company Name : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                        <Label Text=" " HorizontalOptions="Start"
+                       VerticalOptions="CenterAndExpand" Style="{DynamicResource LoginRegularLabel}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <Label Text="Asset Code : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                        <Label Text="{Binding AssetCodeInfo.assetcode}" HorizontalOptions="Start"
+                       VerticalOptions="CenterAndExpand" Style="{DynamicResource LoginRegularLabel}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Asset Desc : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                        <Label Text="{Binding AssetCodeInfo.categoryname}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                        <Label Text="{Binding ScanDetails}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Category : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                        <Label Text="{Binding AssetCodeInfo.categoryname}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Sub category : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                        <Label Text="{Binding AssetCodeInfo.subcategoryname}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Location : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                        <Label Text="{Binding AssetCodeInfo.location_name}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Sub Location : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                        <Label Text="{Binding AssetCodeInfo.sublocation_name}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Department : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                        <Label Text="{Binding AssetCodeInfo.dept_name}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Purchase Date : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                        <Label Text="{Binding AssetCodeInfo.purchasedate}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Use Date : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                        <Label Text="{Binding AssetCodeInfo.usedate}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Asset User : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                        <Label Text="{Binding AssetCodeInfo}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Asset Cost : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                        <Label Text="{Binding AssetCodeInfo.total_amount}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    </StackLayout>
+                </StackLayout>-->
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </pages:CustomPage.Content>
+</pages:CustomPage>

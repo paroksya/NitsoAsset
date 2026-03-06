@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:CustomPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:pages="clr-namespace:NitsoAsset.Pages.Base;assembly=NitsoAsset"
+                  xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                  ios:Page.UseSafeArea="False"
+                  NavigationPage.HasNavigationBar="false"
+                  xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowlistView"
+                  xmlns:controls="clr-namespace:NitsoAsset.Assets.Controls"
+                  xmlns:behaviors="clr-namespace:NitsoAsset.Assets.Behaviors;assembly=NitsoAsset"
+                  xmlns:converters="clr-namespace:NitsoAsset.Assets.Converters"
+                  xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                  xmlns:sh="clr-namespace:Sharpnado.Shades;assembly=Sharpnado.Shadows"
+                  Title="{Binding Title}"
+                  x:Class="NitsoAsset.Pages.LoginPage">
+    <pages:CustomPage.Content>
+        <!--<ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never">
+                <StackLayout  Style="{DynamicResource Default}">
+                    <StackLayout Padding="{OnPlatform Android='0,-20,0,0',iOS='0,-50,0,0'}" Spacing="-4" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+
+                        <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand" BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="0,1">
+                            <yummy:PancakeView.BackgroundGradientStops>
+                                <yummy:GradientStopCollection>
+                                    <yummy:GradientStop Color="#fff" Offset="0" />
+                                    <yummy:GradientStop Color="#fff" Offset="0.2" />
+                                    <yummy:GradientStop Color="{StaticResource BlueColor}" Offset="0.9" />
+                                </yummy:GradientStopCollection>
+                            </yummy:PancakeView.BackgroundGradientStops>
+                            <Image Source="nitso_logo_transparent" Margin="{OnPlatform Android='40,50,40,40', iOS='40,70,40,30'}" HeightRequest="60" WidthRequest="70" HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand" Aspect="AspectFit" />
+                        </yummy:PancakeView>
+                        <Grid>
+                            <Path
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                Fill="{DynamicResource BlueColor}" Aspect="Fill" HeightRequest="90"
+                Data="M 279 276 C 279 291.464 266.464 304 251 304 L 214.607 304 L 214.6293 304.0094 L 202.5707 304.3569 C 196.0916 304.5436 190.1546 308.0205 186.8219 313.5799 L 186.8219 313.5799 L 183.4025 319.2839 C 177.1004 337.175 160.0479 350 140 350 C 119.8902 350 102.7943 337.0957 96.5413 319.1159 L 96.5274 319.127 L 92.8753 313.2819 C 89.5084 307.8934 83.6709 304.5445 77.3197 304.358 L 65.133 304 L 28 304 C 12.536 304 0 291.464 0 276 Z"
+                />
+                            <Label Text="SIGN IN" FontSize="Medium" FontFamily="{DynamicResource OpenSansBold}" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+
+                        </Grid>
+                    </StackLayout>
+                    <StackLayout Style="{DynamicResource Default}" VerticalOptions="StartAndExpand" Padding="30,30,30,30" Spacing="30">
+                        <StackLayout VerticalOptions="FillAndExpand" Spacing="{OnIdiom Phone='25',Tablet='45'}">
+                            <StackLayout Spacing="0">
+                                <Label Text="Client ID" Style="{DynamicResource LoginSemiBoldLabel}" />
+                                <StackLayout Spacing="0">
+                                    <controls:CustomEntry Text="{Binding ClientId.Value}" Placeholder="Client ID" Style="{DynamicResource LoginEntryStyle}">
+                                    </controls:CustomEntry>
+                                    <BoxView BackgroundColor="{DynamicResource Gray}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                                    <Label Margin="0,5,0,0" IsVisible="false" Text="{Binding ClientId.Errors, Converter={converters:FirstValidationErrorConverter}}" Style="{DynamicResource ValidationErrorLabelStyle}">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding ClientId.IsValid}" Value="False">
+                                                <Setter Property="IsVisible" Value="true" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout Spacing="0">
+                                <Label Text="User ID" Style="{DynamicResource LoginSemiBoldLabel}" />
+                                <StackLayout Spacing="0">
+                                    <controls:CustomEntry Text="{Binding UserId.Value}" Placeholder="User ID" Style="{DynamicResource LoginEntryStyle}">
+                                    </controls:CustomEntry>
+                                    <BoxView BackgroundColor="{DynamicResource Gray}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                                    <Label Margin="0,5,0,0" IsVisible="false" Text="{Binding UserId.Errors, Converter={converters:FirstValidationErrorConverter}}" Style="{DynamicResource ValidationErrorLabelStyle}">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding UserId.IsValid}" Value="False">
+                                                <Setter Property="IsVisible" Value="true" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout Spacing="0">
+                                <Label Text="Password" Style="{DynamicResource LoginSemiBoldLabel}" />
+                                <StackLayout Spacing="0">
+                                    <controls:CustomEntry Text="{Binding Password.Value}" Placeholder="Password" IsPassword="true" Style="{DynamicResource LoginEntryStyle}">
+                                    </controls:CustomEntry>
+                                    <BoxView x:Name="pwdBorder" BackgroundColor="{DynamicResource Gray}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                                    <Label Margin="0,5,0,0" IsVisible="false" Text="{Binding Password.Errors, Converter={converters:FirstValidationErrorConverter}}" Style="{DynamicResource ValidationErrorLabelStyle}">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding Password.IsValid}" Value="False">
+                                                <Setter Property="IsVisible" Value="true" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <sh:Shadows Shades="{DynamicResource ButtonBlackShadow}" CornerRadius="25">
+                            <Button Text="Login" BackgroundColor="#305363" Command="{Binding LoginCommand}" Style="{DynamicResource BlueButton}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
+                                </sh:Shadows>
+                            <StackLayout Grid.Column="0" HorizontalOptions="Center">
+                                <Label Text="Forgot password?" Style="{DynamicResource LoginSemiBoldLabel}" TextDecorations="Underline" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </StackLayout>
+
+                    <StackLayout Spacing="10" Margin="10,0,10,15" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                        <Label TextColor="{DynamicResource BlueColor}" FontSize="{DynamicResource FontSize16}"
+                               HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Powered by : "/>
+                                    <Span Text="Nitso Technologies Pvt.Ltd" TextDecorations="Underline">
+                                        <Span.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding NavigateToSiteCommand}"/>
+                                        </Span.GestureRecognizers>
+                                    </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </StackLayout>
+                </StackLayout>
+                </ScrollView>-->
+        <Grid HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <yummy:PancakeView Grid.Row="0" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand" BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="0,1">
+                <yummy:PancakeView.BackgroundGradientStops>
+                    <yummy:GradientStopCollection>
+                        <yummy:GradientStop Color="#fff" Offset="0.1" />
+                        <yummy:GradientStop Color="{StaticResource BlueColor}" Offset="1" />
+                    </yummy:GradientStopCollection>
+                </yummy:PancakeView.BackgroundGradientStops>
+            </yummy:PancakeView>
+            <StackLayout Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"  VerticalScrollBarVisibility="Never">
+                    <StackLayout Style="{DynamicResource Default}" Padding="20">
+                        <Image Source="nitso_transparent_logo" BackgroundColor="Transparent" HeightRequest="70" WidthRequest="70"
+
+                               Margin="0,40,0,10" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Aspect="AspectFit" />
+                        <StackLayout Spacing="0" Margin="15">
+                            <Label Text="Asset Specialist" FontSize="{DynamicResource FontSize18}" FontFamily="{DynamicResource OpenSansSemiBold}"
+                                   Margin="0,10,0,10" HorizontalOptions="Center" VerticalOptions="Center" />
+                            <yummy:PancakeView Margin="0,0,0,50" CornerRadius="20" Padding="20" BackgroundColor="#60ffffff">
+                                <StackLayout VerticalOptions="FillAndExpand" Spacing="{OnIdiom Phone='25',Tablet='45'}">
+                                    <StackLayout Spacing="0">
+                                        <Label Text="Client ID" Style="{DynamicResource LoginSemiBoldLabel}" />
+                                        <StackLayout Spacing="0">
+                                            <controls:CustomEntry Text="{Binding ClientId.Value}" Placeholder="Client ID" Style="{DynamicResource LoginEntryStyle}">
+                                            </controls:CustomEntry>
+                                            <BoxView BackgroundColor="{DynamicResource Gray}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                                            <Label Margin="0,5,0,0" IsVisible="false" Text="{Binding ClientId.Errors, Converter={converters:FirstValidationErrorConverter}}" Style="{DynamicResource ValidationErrorLabelStyle}">
+                                                <Label.Triggers>
+                                                    <DataTrigger TargetType="Label" Binding="{Binding ClientId.IsValid}" Value="False">
+                                                        <Setter Property="IsVisible" Value="true" />
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout Spacing="0">
+                                        <Label Text="User ID" Style="{DynamicResource LoginSemiBoldLabel}" />
+                                        <StackLayout Spacing="0">
+                                            <controls:CustomEntry Text="{Binding UserId.Value}" Placeholder="User ID" Style="{DynamicResource LoginEntryStyle}">
+                                            </controls:CustomEntry>
+                                            <BoxView BackgroundColor="{DynamicResource Gray}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                                            <Label Margin="0,5,0,0" IsVisible="false" Text="{Binding UserId.Errors, Converter={converters:FirstValidationErrorConverter}}" Style="{DynamicResource ValidationErrorLabelStyle}">
+                                                <Label.Triggers>
+                                                    <DataTrigger TargetType="Label" Binding="{Binding UserId.IsValid}" Value="False">
+                                                        <Setter Property="IsVisible" Value="true" />
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout Spacing="0">
+                                        <Label Text="Password" Style="{DynamicResource LoginSemiBoldLabel}" />
+                                        <StackLayout Spacing="0">
+                                            <controls:CustomEntry Text="{Binding Password.Value}" Placeholder="Password" IsPassword="true" Style="{DynamicResource LoginEntryStyle}">
+                                            </controls:CustomEntry>
+                                            <BoxView x:Name="pwdBorder" BackgroundColor="{DynamicResource Gray}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                                            <Label Margin="0,5,0,0" IsVisible="false" Text="{Binding Password.Errors, Converter={converters:FirstValidationErrorConverter}}" Style="{DynamicResource ValidationErrorLabelStyle}">
+                                                <Label.Triggers>
+                                                    <DataTrigger TargetType="Label" Binding="{Binding Password.IsValid}" Value="False">
+                                                        <Setter Property="IsVisible" Value="true" />
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <sh:Shadows Shades="{DynamicResource ButtonWhiteShadow}" CornerRadius="25">
+                                        <Button Text="Login" BackgroundColor="#305363" Command="{Binding LoginCommand}" Style="{DynamicResource BlueButton}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
+                                    </sh:Shadows>
+                                    <StackLayout Grid.Column="0" HorizontalOptions="Center">
+                                        <Label Text="Forgot password?" Style="{DynamicResource LoginSemiBoldLabel}" TextDecorations="Underline" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </StackLayout>
+                            </yummy:PancakeView>
+                        </StackLayout>
+                        <StackLayout Spacing="10" BackgroundColor="Transparent" HorizontalOptions="Center" VerticalOptions="EndAndExpand">
+                            <Label BackgroundColor="Transparent" TextColor="{DynamicResource White}" FontSize="{DynamicResource FontSize16}"
+                                   HorizontalOptions="Center" VerticalOptions="End">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Powered by : "/>
+                                        <Span Text="Nitso Technologies Pvt.Ltd" TextDecorations="Underline">
+                                            <Span.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding NavigateToSiteCommand}"/>
+                                            </Span.GestureRecognizers>
+                                        </Span>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+        </Grid>
+        <!--<yummy:PancakeView HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand" BackgroundGradientStartPoint="0,0" BackgroundGradientEndPoint="0,1">
+                <yummy:PancakeView.BackgroundGradientStops>
+                    <yummy:GradientStopCollection>
+                        <yummy:GradientStop Color="#fff" Offset="0.1" />
+                        <yummy:GradientStop Color="{StaticResource BlueColor}" Offset="1" />
+                    </yummy:GradientStopCollection>
+                </yummy:PancakeView.BackgroundGradientStops>
+                <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never">
+                    <StackLayout Style="{DynamicResource Default}" Padding="20">
+                        <Image Source="nitso_transparent_logo" HeightRequest="70" WidthRequest="70"
+                               Margin="0,40,0,10" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Aspect="AspectFit" />
+                        <StackLayout Spacing="0" Margin="15">
+                            <Label Text="Asset Specialist" FontSize="{DynamicResource FontSize18}" FontFamily="{DynamicResource OpenSansSemiBold}"
+                                   Margin="0,10,0,10" HorizontalOptions="Center" VerticalOptions="Center" />
+                            <yummy:PancakeView Margin="0,0,0,50" CornerRadius="20" Padding="20" BackgroundColor="#60ffffff">
+                                <StackLayout VerticalOptions="FillAndExpand" Spacing="{OnIdiom Phone='25',Tablet='45'}">
+                                    <StackLayout Spacing="0">
+                                        <Label Text="Client ID" Style="{DynamicResource LoginSemiBoldLabel}" />
+                                        <StackLayout Spacing="0">
+                                            <controls:CustomEntry Text="{Binding ClientId.Value}" Placeholder="Client ID" Style="{DynamicResource LoginEntryStyle}">
+                                            </controls:CustomEntry>
+                                            <BoxView BackgroundColor="{DynamicResource Gray}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                                            <Label Margin="0,5,0,0" IsVisible="false" Text="{Binding ClientId.Errors, Converter={converters:FirstValidationErrorConverter}}" Style="{DynamicResource ValidationErrorLabelStyle}">
+                                                <Label.Triggers>
+                                                    <DataTrigger TargetType="Label" Binding="{Binding ClientId.IsValid}" Value="False">
+                                                        <Setter Property="IsVisible" Value="true" />
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout Spacing="0">
+                                        <Label Text="User ID" Style="{DynamicResource LoginSemiBoldLabel}" />
+                                        <StackLayout Spacing="0">
+                                            <controls:CustomEntry Text="{Binding UserId.Value}" Placeholder="User ID" Style="{DynamicResource LoginEntryStyle}">
+                                            </controls:CustomEntry>
+                                            <BoxView BackgroundColor="{DynamicResource Gray}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                                            <Label Margin="0,5,0,0" IsVisible="false" Text="{Binding UserId.Errors, Converter={converters:FirstValidationErrorConverter}}" Style="{DynamicResource ValidationErrorLabelStyle}">
+                                                <Label.Triggers>
+                                                    <DataTrigger TargetType="Label" Binding="{Binding UserId.IsValid}" Value="False">
+                                                        <Setter Property="IsVisible" Value="true" />
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout Spacing="0">
+                                        <Label Text="Password" Style="{DynamicResource LoginSemiBoldLabel}" />
+                                        <StackLayout Spacing="0">
+                                            <controls:CustomEntry Text="{Binding Password.Value}" Placeholder="Password" IsPassword="true" Style="{DynamicResource LoginEntryStyle}">
+                                            </controls:CustomEntry>
+                                            <BoxView x:Name="pwdBorder" BackgroundColor="{DynamicResource Gray}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                                            <Label Margin="0,5,0,0" IsVisible="false" Text="{Binding Password.Errors, Converter={converters:FirstValidationErrorConverter}}" Style="{DynamicResource ValidationErrorLabelStyle}">
+                                                <Label.Triggers>
+                                                    <DataTrigger TargetType="Label" Binding="{Binding Password.IsValid}" Value="False">
+                                                        <Setter Property="IsVisible" Value="true" />
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <sh:Shadows Shades="{DynamicResource ButtonWhiteShadow}" CornerRadius="25">
+                                        <Button Text="Login" BackgroundColor="#305363" Command="{Binding LoginCommand}" Style="{DynamicResource BlueButton}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
+                                    </sh:Shadows>
+                                    <StackLayout Grid.Column="0" HorizontalOptions="Center">
+                                        <Label Text="Forgot password?" Style="{DynamicResource LoginSemiBoldLabel}" TextDecorations="Underline" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </StackLayout>
+                            </yummy:PancakeView>
+                        </StackLayout>
+                        <StackLayout Spacing="10" BackgroundColor="Transparent" HorizontalOptions="Center" VerticalOptions="End">
+                            <Label BackgroundColor="Transparent" TextColor="{DynamicResource White}" FontSize="{DynamicResource FontSize16}"
+                                   HorizontalOptions="Center" VerticalOptions="End">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Powered by : "/>
+                                        <Span Text="Nitso Technologies Pvt.Ltd" TextDecorations="Underline">
+                                            <Span.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding NavigateToSiteCommand}"/>
+                                            </Span.GestureRecognizers>
+                                        </Span>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </yummy:PancakeView>-->
+    </pages:CustomPage.Content>
+</pages:CustomPage>

@@ -1,0 +1,183 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
+
+		<!-- Note for MacCatalyst:
+		The default 
+		is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
+		When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifier>.
+		The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
+		either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
+		<!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
+
+		<OutputType>Exe</OutputType>
+		<RootNamespace>NitsoAsset_Maui</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<!-- Display name -->
+		<ApplicationTitle>NitsoAsset</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.nitsoasset_maui</ApplicationId>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<NuGetAuditLevel>Critical</NuGetAuditLevel>
+		<BuildWithMSBuildOnMono>false</BuildWithMSBuildOnMono>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	  <CodesignKey>iPhone Developer</CodesignKey>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	  <WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	</PropertyGroup>
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.png" ForegroundFile="Resources\AppIcon\appicon.png" BackgroundColor="#3F51B5" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\nitso_logo_splashscreen.png" BaseSize="100,100" BackgroundColor="#3F51B5" />
+ 
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="30,185" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+	<ItemGroup>
+	  <AndroidResource Remove="Platforms\Android\Resources\xml\file_paths.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Autofac" Version="6.3.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="8.0.1" />
+		<PackageReference Include="Controls.UserDialogs.Maui" Version="1.8.0" />
+		<PackageReference Include="Geolocator.Plugin" Version="1.0.2" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
+		<PackageReference Include="Microsoft.Maui.Essentials" Version="8.0.100" />
+		<PackageReference Include="modernhttpclient" Version="2.4.2" />
+		<PackageReference Include="Mopups.Maui" Version="1.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<!--<PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />-->
+		<PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
+		<PackageReference Include="ZXing.Net.Maui" Version="0.4.0" />
+		<PackageReference Include="ZXing.Net.Maui.Controls" Version="0.4.0" />
+		<!--<PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
+		<PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />-->
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="App.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Assets\Controls\AutoCompleteDropDownList.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MainPage.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\AddAssetPage.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\AssetListPage.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\DashBoardPage.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\DrawerPage.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\ForgotPasswordPage.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\LoginPage.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Popups\AlertLogoutPopup.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Popups\AlertPopup.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Popups\AlertVerificationPopup.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Popups\InvalidQRCodePopup.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\QRcodeScannerPage.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\ScannerDetailsPage.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\SearchAssetCodePage.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\SearchPage.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Subviews\BottomShadowView.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\VerifyPage.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Assets\Fonts\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Assets\Fonts\" />
+	</ItemGroup>
+</Project>

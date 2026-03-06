@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pages:CustomPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:pages="clr-namespace:NitsoAsset_Maui.Pages.Base;assembly=NitsoAsset_Maui"
+                  xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+                  xmlns:controls="clr-namespace:NitsoAsset_Maui.Assets.Controls"
+                  xmlns:converters="clr-namespace:NitsoAsset_Maui.Assets.Converters"
+                  ios:Page.UseSafeArea="true"
+                  NavigationPage.HasNavigationBar="True"
+                  Title="{Binding Title}"
+                  x:Class="NitsoAsset_Maui.Pages.SearchAssetCodePage">
+    <pages:CustomPage.Content>
+        <StackLayout Spacing="30" Padding="15" Style="{DynamicResource Default}">
+            <StackLayout Spacing="{OnIdiom Phone='25',Tablet='45'}">
+                <Label Text="Search Asset Code" FontFamily="OpenSansRegular" Style="{DynamicResource LoginSemiBoldLabel}" />
+                <StackLayout Spacing="0">
+                    <controls:CustomEntry Text="{Binding SearchAssetCode.Value}" Placeholder="Asset Code"
+                                          Style="{DynamicResource LoginEntryStyle}">
+                    </controls:CustomEntry>
+                    <BoxView BackgroundColor="{DynamicResource Gray}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                    <Label Margin="0,5,0,0" IsVisible="false" Text="{Binding SearchAssetCode.Errors, Converter={converters:FirstValidationErrorConverter}}" Style="{DynamicResource ValidationErrorLabelStyle}">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label" Binding="{Binding SearchAssetCode.IsValid}" Value="False">
+                                <Setter Property="IsVisible" Value="true" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
+                    <!--<Label Text="Search Asset Code" Style="{DynamicResource LoginSemiBoldLabel}" />
+                    <StackLayout Spacing="0">
+                        <controls:CustomEntry Text="{Binding SearchAssetCode}" Placeholder="Asset Code" Style="{DynamicResource LoginEntryStyle}">
+                        </controls:CustomEntry>
+                        <BoxView BackgroundColor="{DynamicResource Gray}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                    </StackLayout>-->
+                </StackLayout>
+            </StackLayout>
+            <Button Text="Search Asset Code" Command="{Binding SearchAssetCommand}" Style="{DynamicResource BlueButton}"
+                    HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
+        </StackLayout>
+    </pages:CustomPage.Content>
+</pages:CustomPage>

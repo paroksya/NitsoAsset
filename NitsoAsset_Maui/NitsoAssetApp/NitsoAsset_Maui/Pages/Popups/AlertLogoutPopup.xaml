@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups"
+                 xmlns:animations="clr-namespace:Mopups.Animations;assembly=Mopups"
+                 CloseWhenBackgroundIsClicked="False"
+                 BackgroundColor="#59000000"
+                 x:Class="NitsoAsset_Maui.Pages.Popups.AlertLogoutPopup">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation PositionIn="Center" PositionOut="Center" ScaleIn="1.2" ScaleOut="0.8" DurationIn="400"
+                                   DurationOut="300" EasingIn="SinOut" EasingOut="SinIn" HasBackgroundAnimation="False" />
+    </pages:PopupPage.Animation>
+    <Border Margin="40" BackgroundColor="{DynamicResource White}" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Style="{DynamicResource BlackShadow}">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="{OnIdiom Phone='20,20,20,20',Tablet='30,30,30,30'}"/>
+        </Border.StrokeShape>
+        <StackLayout BackgroundColor="Transparent" Padding="20" IsClippedToBounds="true" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="10">
+            <StackLayout Padding="20" Spacing="1" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                <Label Text="Are you sure to Logout ?" FontFamily="{DynamicResource SegoeBold}" TextColor="{DynamicResource AppBlack}" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="{DynamicResource FontSize18}" />
+            </StackLayout>
+            <Grid Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" ColumnSpacing="20" BackgroundColor="Transparent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" BackgroundColor="{DynamicResource BlueColor}" Shadow="{DynamicResource ButtonBlackShadow}" Padding="0" HeightRequest="45" Style="{DynamicResource PopUpButtonStyle}" Margin="0">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CancelCommand}"/>
+                    </Border.GestureRecognizers>
+                    <Label Text="Cancel" TextColor="{DynamicResource White}" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="OpenSansBold"/>
+                </Border>
+                <Border Grid.Column="1" BackgroundColor="#e07c5c" Shadow="{DynamicResource ButtonBlackShadow}" Padding="0" HeightRequest="45" Style="{DynamicResource PopUpButtonStyle}" Margin="0">
+                    <Label Text="Confirm" TextColor="{DynamicResource Black}" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="OpenSansBold"/>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ConfirmCommand}"/>
+                    </Border.GestureRecognizers>
+                </Border>
+            </Grid>
+        </StackLayout>
+    </Border>
+</pages:PopupPage>

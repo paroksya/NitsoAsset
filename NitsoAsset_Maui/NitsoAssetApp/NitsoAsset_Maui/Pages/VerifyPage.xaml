@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:CustomPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:pages="clr-namespace:NitsoAsset_Maui.Pages.Base;assembly=NitsoAsset_Maui"
+                  xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+                  xmlns:controls="clr-namespace:NitsoAsset_Maui.Assets.Controls"
+                  xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
+                  xmlns:converters="clr-namespace:NitsoAsset_Maui.Assets.Converters"
+                  ios:Page.UseSafeArea="true"
+                  NavigationPage.HasNavigationBar="True"
+                  Title="{Binding Title}"
+                  x:Class="NitsoAsset_Maui.Pages.VerifyPage">
+    <pages:CustomPage.Content>
+        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout Spacing="15" Padding="20" Style="{DynamicResource Default}">
+                <StackLayout Spacing="{OnIdiom Phone='20',Tablet='30'}">
+                    <StackLayout.Shadow>
+                        <Shadow Radius="15" Offset="0, 10" Opacity="0.7" Brush= "#19000000"/>
+                    </StackLayout.Shadow>
+                    <ImageButton Source="qrcode" HorizontalOptions="Center" VerticalOptions="Center"
+                                 CornerRadius="15" Padding="10" HeightRequest="100" WidthRequest="100"
+                                 BackgroundColor="{DynamicResource BlueColor}"
+                                 Command="{Binding ScanCommand}" />
+                    <StackLayout Spacing="5" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                        <StackLayout Spacing="0">
+                            <Label Text="Verification Asset Code" FontFamily="OpenSansRegular" Style="{DynamicResource LoginSemiBoldLabel}" />
+                            <controls:CustomEntry Text="{Binding VerificationAssetCode.Value}" Placeholder="Verify Asset Code"
+                                                  FontSize="16" Style="{DynamicResource LoginEntryStyle}">
+                            </controls:CustomEntry>
+                            <BoxView BackgroundColor="{DynamicResource Gray}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                            <Label Margin="0,5,0,0" IsVisible="{Binding IsVerificationAssetCodeError}"
+                                   Text="Verification Asset Code is required" Style="{DynamicResource ValidationErrorLabelStyle}"/>
+                            <Label Margin="0,5,0,0" IsVisible="{Binding IsVerificationAssetCodeErrorVisibleForGet}"
+                                   Text="Verification Asset Code is required" Style="{DynamicResource ValidationErrorLabelStyle}"/>
+                        </StackLayout>
+                        <StackLayout Spacing="0">
+                            <Label Text="Remarks" FontFamily="OpenSansRegular" Style="{DynamicResource LoginSemiBoldLabel}" />
+                            <Editor Margin="0" Placeholder="Enter Remarks" Text="{Binding VerificationAssetCodeRemark.Value}"
+                                    FontSize="16" HeightRequest="100" PlaceholderColor="{DynamicResource LightGray}" />
+                            <BoxView BackgroundColor="{DynamicResource Gray}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                            <Label Margin="0,5,0,0" IsVisible="{Binding IsVerificationAssetCodeRemarkError}"
+                                   Text="Verification remark is required" Style="{DynamicResource ValidationErrorLabelStyle}"/>
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout  Orientation="Horizontal" Spacing="5">
+                    <Button Text="Verify Asset" Command="{Binding VerifyCommand}" Style="{DynamicResource BlueButton}"
+                            HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
+                    <Button Text="Get Details" Command="{Binding GetDetailsAssetCommand}" Style="{DynamicResource BlueButton}"
+                            HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
+                </StackLayout>
+                <StackLayout IsVisible="{Binding IsVerifiedSuccess}" Spacing="0">
+                    <Label Text="Verified Successfully" HorizontalOptions="Start" FontAttributes="Bold"
+                               VerticalOptions="Center" TextColor="Green" Style="{DynamicResource LoginRegularLabel}"/>
+                </StackLayout>
+                <StackLayout IsVisible="{Binding IsStackVisible}" Spacing="5" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <Label Text="Asset Code : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                        <Label Text="{Binding AssetCodeInfo.assetcode}" HorizontalOptions="Start"
+                       VerticalOptions="CenterAndExpand" Style="{DynamicResource LoginRegularLabel}"/>
+                    </StackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="95"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="Asset Desc : " HorizontalOptions="Start"
+                               VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                        <Label Grid.Column="1" Text="{Binding AssetCodeInfo.assetdescription}" HorizontalOptions="Start"
+                               VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                        <!--<Label Text="{Binding ScanDetails}" HorizontalOptions="Start"
+                                   VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>-->
+                    </Grid>
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <Label Text="Asset Value : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                        <Label Text="{Binding AssetCodeInfo.assetcost}" HorizontalOptions="Start"
+                       VerticalOptions="CenterAndExpand" Style="{DynamicResource LoginRegularLabel}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <Label Text="Location : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                        <Label Text="{Binding AssetCodeInfo.location_name}" HorizontalOptions="Start"
+                       VerticalOptions="CenterAndExpand" Style="{DynamicResource LoginRegularLabel}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <Label Text="Date Of Purchase : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                        <Label Text="{Binding AssetCodeInfo.purchasedate}" HorizontalOptions="Start"
+                       VerticalOptions="CenterAndExpand" Style="{DynamicResource LoginRegularLabel}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <Label Text="Name Of Vendor : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                        <Label Text="{Binding AssetCodeInfo.vendorname}" HorizontalOptions="Start"
+                       VerticalOptions="CenterAndExpand" Style="{DynamicResource LoginRegularLabel}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <Label Text="User : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                        <Label Text="{Binding AssetCodeInfo.asset_user_name}" HorizontalOptions="Start"
+                       VerticalOptions="CenterAndExpand" Style="{DynamicResource LoginRegularLabel}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+                        <Label Text="Department : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                        <Label Text="{Binding AssetCodeInfo.dept_name}" HorizontalOptions="Start"
+                       VerticalOptions="CenterAndExpand" Style="{DynamicResource LoginRegularLabel}"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </pages:CustomPage.Content>
+</pages:CustomPage>

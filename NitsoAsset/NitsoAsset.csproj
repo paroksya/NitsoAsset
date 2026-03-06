@@ -1,0 +1,109 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <BuildWithMSBuildOnMono>true</BuildWithMSBuildOnMono>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2478" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="Autofac" Version="6.3.0" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.2.0.534" />
+    <PackageReference Include="modernhttpclient-updated" Version="3.4.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="DLToolkit.Forms.Controls.FlowListView" Version="2.0.11" />
+    <PackageReference Include="Plugin.Permissions" Version="6.0.1" />
+    <PackageReference Include="Xam.Plugin.Geolocator" Version="4.5.0.6" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.14" />
+    <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
+    <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.2244" />
+    <PackageReference Include="XamForms.Enhanced.Calendar" Version="1.6.1" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
+    <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
+    <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
+    <PackageReference Include="Sharpnado.Shadows" Version="1.2.0" />
+    <PackageReference Include="Dynamsoft.CaptureVision.Xamarin.Forms" Version="1.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Pages\" />
+    <None Remove="ViewModels\" />
+    <None Remove="Services\" />
+    <None Remove="Assets\" />
+    <None Remove="Models\" />
+    <None Remove="Assets\Helpers\" />
+    <None Remove="Pages\Base\" />
+    <None Remove="Pages\Popups\" />
+    <None Remove="Pages\Subviews\" />
+    <None Remove="Assets\Behaviors\" />
+    <None Remove="Assets\Controls\" />
+    <None Remove="Assets\Converters\" />
+    <None Remove="Assets\Extensions\" />
+    <None Remove="Assets\Fonts\" />
+    <None Remove="Assets\Validations\" />
+    <None Remove="Services\AppServices\" />
+    <None Remove="Services\AppServices\Implementation\" />
+    <None Remove="Services\AppServices\PageLocator\" />
+    <None Remove="Models\Enums\" />
+    <None Remove="Models\Static\" />
+    <None Remove="Autofac" />
+    <None Remove="Acr.UserDialogs" />
+    <None Remove="modernhttpclient-updated" />
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="DLToolkit.Forms.Controls.FlowListView" />
+    <None Remove="Plugin.Permissions" />
+    <None Remove="Xam.Plugin.Geolocator" />
+    <None Remove="Services\Data\" />
+    <None Remove="Rg.Plugins.Popup" />
+    <None Remove="ViewModels\Base\" />
+    <None Remove="ViewModels\Popups\" />
+    <None Remove="Xam.Plugin.Media" />
+    <None Remove="Xam.Plugin.Connectivity" />
+    <None Remove="Xam.Plugins.Settings" />
+    <None Remove="Xamarin.FFImageLoading" />
+    <None Remove="Xamarin.FFImageLoading.Forms" />
+    <None Remove="modernhttpclient" />
+    <None Remove="Xamarin.Forms.Visual.Material" />
+    <None Remove="XamForms.Enhanced.Calendar" />
+    <None Remove="Xamarin.Forms.PancakeView" />
+    <None Remove="ZXing.Net.Mobile" />
+    <None Remove="ZXing.Net.Mobile.Forms" />
+    <None Remove="Sharpnado.Shadows" />
+    <None Remove="Dynamsoft.CaptureVision.Xamarin.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Services\" />
+    <Folder Include="Assets\" />
+    <Folder Include="Models\" />
+    <Folder Include="Assets\Helpers\" />
+    <Folder Include="Pages\Base\" />
+    <Folder Include="Pages\Popups\" />
+    <Folder Include="Pages\Subviews\" />
+    <Folder Include="Assets\Behaviors\" />
+    <Folder Include="Assets\Controls\" />
+    <Folder Include="Assets\Converters\" />
+    <Folder Include="Assets\Extensions\" />
+    <Folder Include="Assets\Fonts\" />
+    <Folder Include="Assets\Validations\" />
+    <Folder Include="Services\AppServices\" />
+    <Folder Include="Services\AppServices\Implementation\" />
+    <Folder Include="Services\AppServices\PageLocator\" />
+    <Folder Include="Models\Enums\" />
+    <Folder Include="Models\Static\" />
+    <Folder Include="Services\Data\" />
+    <Folder Include="ViewModels\Base\" />
+    <Folder Include="ViewModels\Popups\" />
+  </ItemGroup>
+</Project>

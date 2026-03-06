@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sh="clr-namespace:Sharpnado.Shades;assembly=Sharpnado.Shadows"
+             x:Class="NitsoAsset.Pages.Subviews.BottomShadowView">
+     <ContentView.Content>
+        <Grid>
+            <sh:Shadows Margin="0,0,0,5" HeightRequest="5" CornerRadius="20" Shades="{sh:SingleShade Offset='-5, -5',
+                BlurRadius=10,Opacity=0.4, Color={StaticResource Black}}">
+                <BoxView BackgroundColor="White" HeightRequest="10" HorizontalOptions="FillAndExpand" CornerRadius="12,12,0,0"/>
+            
+                </sh:Shadows>
+            <BoxView BackgroundColor="White" HeightRequest="15" HorizontalOptions="FillAndExpand" CornerRadius="0,0,12,12"/>
+            
+        </Grid>
+        <!--<sh:Shadows CornerRadius="12"
+            Shades="{sh:SingleShade Offset='5, 0',
+                                    Opacity=0.5,
+                                    Color={StaticResource Black}}">
+        <BoxView BackgroundColor="Black" HeightRequest="10" HorizontalOptions="FillAndExpand" CornerRadius="12,12,0,0"/>
+            </sh:Shadows>-->
+    </ContentView.Content>
+</ContentView>

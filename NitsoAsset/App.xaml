@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:controls="clr-namespace:NitsoAsset.Assets.Controls;assembly=NitsoAsset"
+             xmlns:sh="clr-namespace:Sharpnado.Shades;assembly=Sharpnado.Shadows"
+             xmlns:subviews="clr-namespace:NitsoAsset.Pages.Subviews"
+             x:Class="NitsoAsset.App">
+    <Application.Resources>
+        <OnPlatform x:Key="OpenSansBold" x:TypeArguments="x:String" Android="Fonts/OpenSans-Bold.ttf#OpenSans" iOS="OpenSans-Bold" />
+        <OnPlatform x:Key="OpenSansRegular" x:TypeArguments="x:String" Android="Fonts/OpenSans-Regular.ttf#OpenSans" iOS="OpenSans-Regular" />
+        <OnPlatform x:Key="OpenSansSemiBold" x:TypeArguments="x:String" Android="Fonts/OpenSans-SemiBold.ttf#OpenSans" iOS="OpenSans-SemiBold" />
+        <OnPlatform x:Key="OpenSansLight" x:TypeArguments="x:String" Android="Fonts/OpenSans-Light.ttf#OpenSans" iOS="OpenSans-Light" />
+        <OnPlatform x:Key="OpenSansExtraBold" x:TypeArguments="x:String" Android="Fonts/OpenSans-ExtraBold.ttf#OpenSans" iOS="OpenSans-ExtraBold" />
+        <!--Colors-->
+        <Color x:Key="White">#ffffff</Color>
+        <Color x:Key="Black">#000000</Color>
+        <Color x:Key="NavBarBGColor">#2169d6</Color>
+        <Color x:Key="DrawerBgClr">#f2f4f7</Color>
+        <Color x:Key="BlueColor">#305363</Color>
+        <Color x:Key="AppRedColor">#e95557</Color>
+        <Color x:Key="PageBG">#f2f4f7</Color>
+        <Color x:Key="LightSilver">#fcfcfc</Color>
+        <Color x:Key="DarkBlueColor">#0e2e64</Color>
+        <Color x:Key="Gray">#7A7A7A</Color>
+        <Color x:Key="LightGray">#C2C2C2</Color>
+        <Color x:Key="TabBlueColor">#1154ab</Color>
+        <Color x:Key="HoverBackgroundColor">#80000000</Color>
+        <Color x:Key="PancakeBGColor">#EAA221</Color>
+        <Color x:Key="OpacityPancakeBGColor">#EAA221</Color>
+        <!--End Colors-->
+        <!--  SingleShade  -->
+        <sh:SingleShade x:Key="BlackShadow" Offset="0,4" Opacity="0.4"  Color="Black" />
+        <sh:SingleShade x:Key="ButtonBlackShadow" Offset="0,4" Opacity="0.4" BlurRadius="25" Color="Black" />
+        <sh:SingleShade x:Key="ButtonWhiteShadow" Offset="0,4" Opacity="0.4" BlurRadius="25" Color="White" />
+        <!--  End SingleShade  -->
+        <!--    Font Size    -->
+        <OnIdiom x:Key="FontSize10" x:TypeArguments="x:Double" Phone="10" Tablet="15" />
+        <OnIdiom x:Key="FontSize11" x:TypeArguments="x:Double" Phone="11" Tablet="16.5" />
+        <OnIdiom x:Key="FontSize12" x:TypeArguments="x:Double" Phone="12" Tablet="18" />
+        <OnIdiom x:Key="FontSize14" x:TypeArguments="x:Double" Phone="14" Tablet="21" />
+        <OnIdiom x:Key="FontSize15" x:TypeArguments="x:Double" Phone="15" Tablet="23" />
+        <!--<OnIdiom x:Key="FontSize15" x:TypeArguments="x:Double" Phone="15" Tablet="23" />-->
+        <OnIdiom x:Key="FontSize16" x:TypeArguments="x:Double" Phone="16" Tablet="24" />
+        <OnIdiom x:Key="FontSize18" x:TypeArguments="x:Double" Phone="18" Tablet="27" />
+        <OnIdiom x:Key="FontSize20" x:TypeArguments="x:Double" Phone="20" Tablet="30" />
+        <OnIdiom x:Key="FontSize22" x:TypeArguments="x:Double" Phone="22" Tablet="33" />
+        <OnIdiom x:Key="FontSize26" x:TypeArguments="x:Double" Phone="26" Tablet="39" />
+        <OnIdiom x:Key="FontSize30" x:TypeArguments="x:Double" Phone="30" Tablet="45" />
+        <!--    End Font Size    -->
+        <OnIdiom x:Key="EntryHeight" x:TypeArguments="x:Double" Phone="30" Tablet="50" />
+        <OnIdiom x:Key="PickerHeight" x:TypeArguments="x:Double" Phone="45" Tablet="50" />
+        <OnIdiom x:Key="ButtonHeight" x:TypeArguments="x:Double" Phone="45" Tablet="50" />
+
+        <OnIdiom x:Key="DashboardColumnSize" x:TypeArguments="x:Double" Phone="100" Tablet="180" />
+        <OnIdiom x:Key="DashboardColumnHeight" x:TypeArguments="x:Double" Phone="100" Tablet="180" />
+
+         <!--    View Spacings and Paddings    -->
+        <OnIdiom x:Key="Spacing10" x:TypeArguments="x:Double" Phone="10" Tablet="15" />
+        <OnIdiom x:Key="Spacing15" x:TypeArguments="x:Double" Phone="15" Tablet="23" />
+        <OnIdiom x:Key="Spacing20" x:TypeArguments="x:Double" Phone="20" Tablet="30" />
+        <OnIdiom x:Key="Spacing24" x:TypeArguments="x:Double" Phone="24" Tablet="36" />
+        <OnIdiom x:Key="LR10Margin" x:TypeArguments="Thickness" Phone="10,0,10,0" Tablet="20,0,20,0" />
+        <OnIdiom x:Key="LR15Margin" x:TypeArguments="Thickness" Phone="15,0,15,0" Tablet="23,0,23,0" />
+        <OnIdiom x:Key="LR20Margin" x:TypeArguments="Thickness" Phone="20,0,20,0" Tablet="30,0,30,0" />
+        <OnIdiom x:Key="BT20Margin" x:TypeArguments="Thickness" Phone="0,20,0,20" Tablet="0,30,0,30" />
+        <OnIdiom x:Key="Padding15" x:TypeArguments="Thickness" Phone="15" Tablet="23" />
+        <OnIdiom x:Key="Padding10" x:TypeArguments="Thickness" Phone="10" Tablet="15" />
+        <OnIdiom x:Key="Padding5" x:TypeArguments="Thickness" Phone="5" Tablet="8" />
+        <OnIdiom x:Key="Padding0" x:TypeArguments="Thickness" Phone="0" Tablet="8" />
+
+        <Style x:Key="Default" TargetType="StackLayout">
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Spacing" Value="0" />
+        </Style>
+         <!--  Control Template  -->
+            <ControlTemplate x:Key="NitsoAssetTemplate">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0" ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <subviews:BottomShadowView Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" />
+                    <ContentPresenter Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                </Grid>
+            </ControlTemplate>
+        <!--  End Control Template  -->
+        <!--Labels-->
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource Black}" />
+            <Setter Property="FontSize" Value="{DynamicResource FontSize15}" />
+            <Setter Property="FontFamily" Value="{DynamicResource OpenSansRegular}" />
+        </Style>
+        <Style x:Key="WhiteLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource White}" />
+            <Setter Property="FontSize" Value="{DynamicResource FontSize12}" />
+            <Setter Property="FontFamily" Value="{DynamicResource OpenSansRegular}" />
+        </Style>
+        <Style x:Key="WhiteBoldLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource White}" />
+            <Setter Property="FontSize" Value="{DynamicResource FontSize18}" />
+            <Setter Property="FontFamily" Value="{DynamicResource OpenSansBold}" />
+        </Style>
+        <Style x:Key="BlackBoldLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource Black}" />
+            <Setter Property="FontSize" Value="{DynamicResource FontSize18}" />
+            <Setter Property="FontFamily" Value="{DynamicResource OpenSansBold}" />
+        </Style>
+        <Style x:Key="DarkBlueLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource DarkBlueColor}" /> 
+            <Setter Property="FontSize" Value="{DynamicResource FontSize15}" />
+            <Setter Property="FontFamily" Value="{DynamicResource OpenSansRegular}" />
+        </Style>
+        <Style x:Key="DarkBlueBoldLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource DarkBlueColor}" />
+            <Setter Property="FontSize" Value="{DynamicResource FontSize12}" />
+            <Setter Property="FontFamily" Value="{DynamicResource OpenSansBold}" />
+        </Style>
+        <Style x:Key="LoginRegularLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource Black}" />
+            <Setter Property="FontSize" Value="{DynamicResource FontSize15}" />
+            <Setter Property="FontFamily" Value="{DynamicResource OpenSansRegular}" />
+        </Style>
+        <Style x:Key="LoginSemiBoldLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource DarkBlueColor}" />
+            <Setter Property="FontSize" Value="{DynamicResource FontSize15}" />
+            <Setter Property="FontFamily" Value="{DynamicResource OpenSansRegular}" />
+        </Style>
+        <Style x:Key="LoginBlueLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource BlueColor}" />
+            <Setter Property="FontSize" Value="{DynamicResource FontSize15}" />
+            <Setter Property="FontFamily" Value="{DynamicResource OpenSansRegular}" />
+        </Style>
+        <Style x:Key="ValidationErrorLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource AppRedColor}" />
+            <Setter Property="FontSize" Value="{DynamicResource FontSize12}" />
+        </Style>
+        <Style x:Key="SilverLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="{DynamicResource LightGray}" />
+            <Setter Property="FontSize" Value="{DynamicResource FontSize15}" />
+            <Setter Property="FontFamily" Value="{DynamicResource OpenSansRegular}" />
+        </Style>
+        <!--End Labels-->
+        <!--  PancakeView  -->
+        <OnPlatform x:TypeArguments="Thickness" x:Key="PancakePadding">
+            <On Platform="iOS" Value="12" />
+            <On Platform="Android" Value="10" />
+        </OnPlatform>
+        <Style x:Key="PancakeViewStyle" TargetType="yummy:PancakeView">
+            <Setter Property="BackgroundColor" Value="{DynamicResource PancakeBGColor}" />
+            <Setter Property="Margin" Value="20,0,20,0" />
+            <Setter Property="Padding" Value="{DynamicResource PancakePadding}" />
+            <Setter Property="CornerRadius" Value="5" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="VerticalOptions" Value="StartAndExpand" />
+        </Style>
+        <!--End PancakeView-->
+        <!--    Button    -->
+        <OnPlatform x:TypeArguments="Thickness" x:Key="LoginEntryMargins">
+            <On Platform="iOS" Value="0,0,0,0" />
+            <On Platform="Android" Value="-5,0,0,0" />
+        </OnPlatform>
+        <Style x:Key="LoginEntryStyle" TargetType="controls:CustomEntry">
+            <Setter Property="TextColor" Value="{DynamicResource Black}" />
+            <Setter Property="FontFamily" Value="{DynamicResource OpenSansRegular}" />
+            <Setter Property="HeightRequest" Value="40" />
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="PlaceholderColor" Value="{DynamicResource LightGray}" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="FontSize" Value="{DynamicResource FontSize16}" />
+            <Setter Property="Margin" Value="{DynamicResource LoginEntryMargins}" />
+        </Style>
+        <Style x:Key="DatePickerStyle" TargetType="DatePicker">
+            <Setter Property="HeightRequest" Value="40" />
+            <Setter Property="TextColor" Value="{DynamicResource Black}" />
+            <Setter Property="FontFamily" Value="{DynamicResource OpenSansRegular}" />
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="FontSize" Value="{StaticResource FontSize16}" />
+            <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+            <Setter Property="Margin" Value="{DynamicResource LoginEntryMargins}" />
+        </Style>
+        <Style x:Key="BlueButton" TargetType="Button">
+            <Setter Property="TextColor" Value="{DynamicResource White}" />
+            <Setter Property="FontFamily" Value="{DynamicResource OpenSansBold}" />
+            <Setter Property="HeightRequest" Value="{DynamicResource ButtonHeight}" />
+            <Setter Property="BackgroundColor" Value="{DynamicResource BlueColor}" />
+            <Setter Property="BorderColor" Value="{DynamicResource BlueColor}" />
+            <Setter Property="FontSize" Value="{DynamicResource FontSize16}" />
+            <Setter Property="CornerRadius" Value="23" />
+            <Setter Property="FontAttributes" Value="Bold" />
+        </Style>
+        <!--End Button-->
+    </Application.Resources>
+</Application>

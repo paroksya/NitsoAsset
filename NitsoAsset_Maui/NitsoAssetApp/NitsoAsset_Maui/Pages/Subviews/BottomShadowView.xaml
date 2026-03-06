@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NitsoAsset_Maui.Pages.Subviews.BottomShadowView">
+    <ContentView.Content>
+        <Grid>
+            <BoxView BackgroundColor="White" HeightRequest="10" HorizontalOptions="FillAndExpand" CornerRadius="12,12,0,0">
+                <BoxView.Shadow>
+                    <Shadow Radius="20" Offset="-5, -5" Opacity="0.4" Brush="{StaticResource Black}" />
+                </BoxView.Shadow>
+            </BoxView>
+            <BoxView BackgroundColor="White" HeightRequest="15" HorizontalOptions="FillAndExpand" CornerRadius="0,0,12,12"/>
+        </Grid>
+        <!--<sh:Shadows CornerRadius="12"
+            Shades="{sh:SingleShade Offset='5, 0',
+                                    Opacity=0.5,
+                                    Color={StaticResource Black}}">
+        <BoxView BackgroundColor="Black" HeightRequest="10" HorizontalOptions="FillAndExpand" CornerRadius="12,12,0,0"/>
+            </sh:Shadows>-->
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:CustomPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:pages="clr-namespace:NitsoAsset.Pages.Base;assembly=NitsoAsset"
+                  xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                  xmlns:controls="clr-namespace:NitsoAsset.Assets.Controls"
+                  xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+                  xmlns:converters="clr-namespace:NitsoAsset.Assets.Converters"
+                  ios:Page.UseSafeArea="true"
+                  NavigationPage.HasNavigationBar="True"
+                  Title="{Binding Title}"
+                  x:Class="NitsoAsset.Pages.ScannerDetailsPage">
+    <pages:CustomPage.Content>
+        <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never">
+            <StackLayout Spacing="15" Padding="20" Style="{DynamicResource Default}">
+                <!--<StackLayout Orientation="Horizontal" Spacing="0">
+                <Label Text="Company Name : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                <Label Text="" HorizontalOptions="Start"
+                       VerticalOptions="CenterAndExpand" Style="{DynamicResource LoginRegularLabel}"/>
+                </StackLayout>-->
+                <StackLayout Orientation="Horizontal" Spacing="0">
+                    <Label Text="Asset Code : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    <Label Text="{Binding AssetCodeInfo.assetcode}" HorizontalOptions="Start"
+                       VerticalOptions="CenterAndExpand" Style="{DynamicResource LoginRegularLabel}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Asset Desc : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    <Label Text="{Binding AssetCodeInfo.assetdescription}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    <!--<Label Text="{Binding ScanDetails}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>-->
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Category : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    <Label Text="{Binding AssetCodeInfo.categoryname}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Sub category : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    <Label Text="{Binding AssetCodeInfo.subcategoryname}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Location : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    <Label Text="{Binding AssetCodeInfo.location_name}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Sub Location : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    <Label Text="{Binding AssetCodeInfo.sublocation_name}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Department : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    <Label Text="{Binding AssetCodeInfo.dept_name}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Name of Vendor : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    <Label Text="{Binding AssetCodeInfo.vendorname}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Purchase Date : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    <Label Text="{Binding AssetCodeInfo.purchasedate}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Use Date : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    <Label Text="{Binding AssetCodeInfo.usedate}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Asset User : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    <Label Text="{Binding AssetCodeInfo.asset_user_name}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Asset Cost : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    <Label Text="{Binding AssetCodeInfo.assetcost}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                </StackLayout>
+                 <StackLayout Orientation="Horizontal">
+                    <Label Text="Serial Number : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    <Label Text="{Binding AssetCodeInfo.serial_no}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </pages:CustomPage.Content>
+</pages:CustomPage>

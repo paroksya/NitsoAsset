@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:animations="clr-namespace:Mopups.Animations;assembly=Mopups"
+                 xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups"
+                 BackgroundColor="#59000000"
+                 x:Class="NitsoAsset_Maui.Pages.Popups.AlertPopup" 
+                 CloseWhenBackgroundIsClicked="False">
+    <!--You can set an animation in the xaml file or in the csharp code behind-->
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation PositionIn="Center" PositionOut="Center" ScaleIn="1.2" ScaleOut="0.8" DurationIn="400" DurationOut="300" EasingIn="SinOut" EasingOut="SinIn" HasBackgroundAnimation="True" />
+    </pages:PopupPage.Animation>
+    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Margin="0" Spacing="0">
+        <Frame IsClippedToBounds="true" BackgroundColor="White" BorderColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="false" Margin="40" Padding="0,20,0,0" CornerRadius="15">
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="5">
+                <StackLayout Padding="10" Spacing="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Label Text="{Binding AlertMessage}" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="Medium" />
+                </StackLayout>
+                <Button Style="{DynamicResource BlueButton}" FontSize="17" BackgroundColor="{DynamicResource Purple}" CornerRadius="0" Command="{Binding CloseCommand}" VerticalOptions="Start" Margin="-20,15,-20,0" Text="Ok"  />
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>

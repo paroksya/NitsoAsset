@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:CustomPage xmlns="http://xamarin.com/schemas/2014/forms"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:pages="clr-namespace:NitsoAsset.Pages.Base;assembly=NitsoAsset"
+                        xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                        xmlns:controls="clr-namespace:NitsoAsset.Assets.Controls"
+                        xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+                        xmlns:forms="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+                        xmlns:dynamsoft = "clr-namespace:DCVXamarin;assembly=DCVXamarin"
+                        ios:Page.UseSafeArea="true"
+                        NavigationPage.HasNavigationBar="True"
+                        Title="{Binding Title}"
+                        x:Class="NitsoAsset.Pages.QRcodeScannerPage">
+    <NavigationPage.TitleView>
+         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
+             <ImageButton Source="no_flash" HeightRequest="25" WidthRequest="25" HorizontalOptions="EndAndExpand"
+                          Margin="0,0,10,0" VerticalOptions="Center" BackgroundColor="Transparent" Command="{Binding FlashCommand}">
+                 <ImageButton.Triggers>
+                     <DataTrigger TargetType="ImageButton" Binding="{Binding IsTorch}" Value="false">
+                         <Setter Property="Source" Value="flash_on"/>
+                     </DataTrigger>
+                 </ImageButton.Triggers>
+             </ImageButton>
+         </StackLayout>
+     </NavigationPage.TitleView>
+    <pages:CustomPage.Content>
+         <!--<AbsoluteLayout>
+            <dynamsoft:DCVCameraView OverlayVisible="True"
+                                     x:Name="scanner"
+							         AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                     AbsoluteLayout.LayoutFlags="All">
+                <dynamsoft:DCVCameraView.TorchButton>
+                    <dynamsoft:TorchButton Visible="True">
+                    </dynamsoft:TorchButton>
+                </dynamsoft:DCVCameraView.TorchButton>
+            </dynamsoft:DCVCameraView>
+            <Label x:Name="label" Text = ''
+                   AbsoluteLayout.LayoutBounds="0.5,0.5,300,25"
+                   AbsoluteLayout.LayoutFlags="PositionProportional"/>
+        </AbsoluteLayout>-->
+    <Grid RowSpacing="0" ColumnSpacing="0" BackgroundColor="Transparent" Margin="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="250"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <zxing:ZXingScannerView x:Name="scanner"
+                                Grid.RowSpan="3" 
+                                Grid.ColumnSpan="3"
+                                IsTorchOn="{Binding IsTorch,Mode=TwoWay}"
+                                IsAnalyzing="{Binding IsAnalyzing,Mode=TwoWay}"
+                                IsScanning="{Binding IsScanning,Mode=TwoWay}"
+                                OnScanResult="ZXingScannerView_OnScanResult"/>
+        <BoxView Grid.Row="0" 
+                 Grid.ColumnSpan="3" 
+                 BackgroundColor="{StaticResource HoverBackgroundColor}"/>
+        <BoxView Grid.Row="1" 
+                 Grid.Column="0" 
+                 BackgroundColor="{StaticResource HoverBackgroundColor}"/>
+        <BoxView Grid.Row="1" 
+                 Grid.Column="2" 
+                 BackgroundColor="{StaticResource HoverBackgroundColor}"/>
+        <BoxView Grid.Row="2" 
+                 Grid.ColumnSpan="3" 
+                 BackgroundColor="{StaticResource HoverBackgroundColor}"/>
+        <Label Grid.Row="0" 
+               Grid.Column="1" 
+               Margin="0,0,0,10" 
+               BackgroundColor="Transparent" 
+               TextColor="White" 
+               Text="" 
+               VerticalOptions="End" 
+               HorizontalOptions="Center"/>
+        <BoxView x:Name="topLine" 
+                 Grid.Row="1" 
+                 Grid.Column="1" 
+                 Margin="1,1,1,0" 
+                 BackgroundColor="White" 
+                 HeightRequest="1" 
+                 VerticalOptions="Start" 
+                 HorizontalOptions="FillAndExpand"/>
+        <BoxView x:Name="bottomLine" 
+                 Grid.Row="1" 
+                 Grid.Column="1" 
+                 Margin="1,0,1,1" 
+                 BackgroundColor="White" 
+                 HeightRequest="1"
+                 VerticalOptions="End" 
+                 HorizontalOptions="FillAndExpand"/>
+        <BoxView Grid.Row="1" 
+                 Grid.Column="1" 
+                 Margin="1,1,0,1" 
+                 BackgroundColor="White" 
+                 WidthRequest="1" 
+                 HorizontalOptions="Start" 
+                 VerticalOptions="FillAndExpand"/>
+        <BoxView Grid.Row="1" 
+                 Grid.Column="1" 
+                 Margin="0,1,1,1" 
+                 BackgroundColor="White" 
+                 WidthRequest="1" 
+                 HorizontalOptions="End" 
+                 VerticalOptions="FillAndExpand"/>
+        <Image Grid.Row="1" 
+               Grid.Column="1" 
+               Source="left_top" 
+               HorizontalOptions="Start" 
+               VerticalOptions="Start"/>
+        <Image Grid.Row="1" 
+               Grid.Column="1" 
+               Source="right_top" 
+               HorizontalOptions="End" 
+               VerticalOptions="Start"/>
+        <Image Grid.Row="1" 
+               Grid.Column="1" 
+               Source="left_bottom" 
+               HorizontalOptions="Start" 
+               VerticalOptions="End"/>
+        <Image Grid.Row="1" 
+               Grid.Column="1" 
+               Source="right_bottom" 
+               HorizontalOptions="End" 
+               VerticalOptions="End"/>
+        <Image x:Name="line" 
+               Grid.Row="1" 
+               Grid.Column="1" 
+               Source="animate_line" 
+               VerticalOptions="Start"/>
+    </Grid>
+ </pages:CustomPage.Content>
+</pages:CustomPage>

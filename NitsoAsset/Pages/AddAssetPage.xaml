@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:CustomPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:pages="clr-namespace:NitsoAsset.Pages.Base;assembly=NitsoAsset"
+                  NavigationPage.HasNavigationBar="True"
+                  x:Class="NitsoAsset.Pages.AddAssetPage">
+    <pages:CustomPage.Content>
+        <StackLayout>
+            <WebView x:Name="webView" Source="{Binding Url}" VerticalOptions="FillAndExpand"/>
+        </StackLayout>
+    </pages:CustomPage.Content>
+</pages:CustomPage>

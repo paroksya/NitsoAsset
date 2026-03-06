@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:CustomPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:pages="clr-namespace:NitsoAsset.Pages.Base;assembly=NitsoAsset"
+                  xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+                  xmlns:controls="clr-namespace:NitsoAsset.Assets.Controls"
+                  xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+                  ios:Page.UseSafeArea="true"
+                  NavigationPage.HasNavigationBar="True"
+                  Title="{Binding Title}"
+                  x:Class="NitsoAsset.Pages.SearchPage">
+    <pages:CustomPage.Content>
+        <StackLayout Spacing="30" Padding="15" Style="{DynamicResource Default}">
+            <StackLayout Spacing="{OnIdiom Phone='25',Tablet='45'}">
+                <StackLayout Spacing="0">
+                    <Label Text="Search" FontFamily="{DynamicResource OpenSansRegular}" Style="{DynamicResource LoginSemiBoldLabel}" />
+                    <StackLayout Spacing="0">
+                        <controls:CustomEntry Text="{Binding SearchText}" Placeholder="Search"
+                                              Style="{DynamicResource LoginEntryStyle}">
+                        </controls:CustomEntry>
+                        <BoxView BackgroundColor="{DynamicResource Gray}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+            <Button Text="Search" Command="{Binding SearchCommand}" Style="{DynamicResource BlueButton}"
+                    HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
+        </StackLayout>
+    </pages:CustomPage.Content>
+</pages:CustomPage>

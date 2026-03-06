@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups" 
+                 xmlns:animations="clr-namespace:Mopups.Animations;assembly=Mopups"
+                 xmlns:converters="clr-namespace:NitsoAsset_Maui.Assets.Converters;assembly=NitsoAsset_Maui"
+                 xmlns:controls="clr-namespace:NitsoAsset_Maui.Assets.Controls"
+                 CloseWhenBackgroundIsClicked="false"
+                 x:Class="NitsoAsset_Maui.Pages.Popups.InvalidQRCodePopup">
+    <!--todo <pages:PopupPage.HasSystemPadding>
+        <OnPlatform x:TypeArguments="x:Boolean">
+            <OnPlatform.iOS>true</OnPlatform.iOS>
+            <OnPlatform.Android>true</OnPlatform.Android>
+        </OnPlatform>
+    </pages:PopupPage.HasSystemPadding>-->
+    <!--You can set an animation in the xaml file or in the csharp code behind-->
+    <pages:PopupPage.Animation>
+        <!--<animations:ScaleAnimation PositionIn="Center" PositionOut="Center" ScaleIn="1.0" ScaleOut="1.0" DurationIn="200" DurationOut="200" EasingIn="SinOut" EasingOut="SinIn" HasBackgroundAnimation="True" />-->
+        <animations:FadeAnimation DurationIn="300" DurationOut="300" EasingIn="SinOut" EasingOut="SinIn" HasBackgroundAnimation="true" />
+    </pages:PopupPage.Animation>
+    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Margin="0" Spacing="0">
+        <Frame IsClippedToBounds="true" BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="false" Margin="{OnIdiom Phone='40',Tablet='45'}" Padding="0" CornerRadius="{OnIdiom Phone='8',Tablet='12'}">
+            <StackLayout IsClippedToBounds="true" Spacing="15" Padding="20">
+                <Label Text="{Binding ConfirmTitle}" IsVisible="{Binding ConfirmTitle, Converter={converters:LabelVisibilityConverter}}" Style="{DynamicResource BoldLabel}" FontSize="{DynamicResource FontSize18}"/>
+                
+                <Label Text="{Binding ConfirmMessage}" IsVisible="{Binding ConfirmMessage, Converter={converters:LabelVisibilityConverter}}" FontSize="{DynamicResource FontSize16}" LineHeight="1.3"/>
+                
+                
+                <Grid HorizontalOptions="End" ColumnSpacing="{OnPlatform Android='20', iOS='30'}" BackgroundColor="Transparent">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>    
+                    <Button Grid.Column="0" Text="{Binding CancelBtnText}" Command="{Binding CloseCommand}" BackgroundColor="{DynamicResource Gray}" Style="{DynamicResource BlueButton}" HorizontalOptions="End"/>
+                    <Button Grid.Column="1" HorizontalOptions="End" Command="{Binding ConfirmCommand}" TextColor="{DynamicResource White}" Text="{Binding ConfirmBtnText}" Style="{DynamicResource BlueButton}" Padding="25,0,25,0"/>
+                </Grid>    
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</pages:PopupPage>

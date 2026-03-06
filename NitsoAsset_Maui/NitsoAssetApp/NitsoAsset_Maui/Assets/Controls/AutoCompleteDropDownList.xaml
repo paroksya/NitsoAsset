@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:NitsoAsset_Maui.Assets.Controls"
+             x:Class="NitsoAsset_Maui.Assets.Controls.AutoCompleteDropDownList">
+    <ContentView.Content>
+        <ContentView x:Name="_dropdownWrapper" IsClippedToBounds="True" Padding="0" BackgroundColor="Transparent">
+            <Border x:Name="_dropdownPancake" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" BackgroundColor="White" Stroke="#d3d3d3" StrokeThickness="1" Padding="0">
+                <Grid>
+                    <ListView BackgroundColor="Transparent" x:Name="_listView" SeparatorVisibility="None" VerticalScrollBarVisibility="Never" HasUnevenRows="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout>
+                                        <StackLayout Orientation="Horizontal" Padding="{OnIdiom Phone='5,5,5,5',Tablet='8,8,8,8'}" Spacing="2" HorizontalOptions="Start" VerticalOptions="FillAndExpand">
+                                            <!--<Image Source="{Binding CheckboxImage}" HeightRequest="{OnIdiom Phone='20',Tablet='30'}" WidthRequest="{OnIdiom Phone='20',Tablet='30'}" IsVisible="{Binding IsVisibleCheckbox}" />-->
+                                            <Label Text="{Binding Name}" TextColor="{DynamicResource Black}" HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Start" MaxLines="4" LineBreakMode="TailTruncation" />
+                                        </StackLayout>
+                                        <BoxView HeightRequest="1" BackgroundColor="#E4E4E4" HorizontalOptions="FillAndExpand"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.Footer>
+                            <ContentView />
+                        </ListView.Footer>
+                    </ListView>
+                    <ActivityIndicator x:Name="_dropdownLoader" HeightRequest="{OnPlatform Android='30'}" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="False" IsRunning="true" Color="Black"/>
+                </Grid>
+            </Border>
+        </ContentView>
+    </ContentView.Content>
+</ContentView>
