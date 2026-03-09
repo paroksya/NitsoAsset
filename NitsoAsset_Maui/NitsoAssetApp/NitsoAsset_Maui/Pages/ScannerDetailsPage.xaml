@@ -96,6 +96,12 @@
                     <Label Text="{Binding AssetCodeInfo.assetcost}" HorizontalOptions="Start"
                        VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
                 </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Serial Number : " HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                    <Label Text="{Binding AssetCodeInfo.serial_no}" HorizontalOptions="Start"
+                       VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
+                </StackLayout>
             </StackLayout>
         </ScrollView>
     </pages:CustomPage.Content>
