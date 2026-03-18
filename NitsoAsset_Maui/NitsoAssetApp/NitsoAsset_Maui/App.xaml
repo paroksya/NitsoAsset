@@ -14,7 +14,8 @@
         <Color x:Key="Black">#000000</Color>
         <Color x:Key="NavBarBGColor">#2169d6</Color>
         <Color x:Key="DrawerBgClr">#f2f4f7</Color>
-        <Color x:Key="BlueColor">#305363</Color>
+        <!-- <Color x:Key="BlueColor">#305363</Color> -->
+        <Color x:Key="BlueColor">#337bb9</Color>
         <Color x:Key="AppRedColor">#e95557</Color>
         <Color x:Key="PageBG">#f2f4f7</Color>
         <Color x:Key="LightSilver">#fcfcfc</Color>
@@ -51,6 +52,8 @@
         <OnIdiom x:Key="EntryHeight" x:TypeArguments="x:Double" Phone="30" Tablet="50" />
         <OnIdiom x:Key="PickerHeight" x:TypeArguments="x:Double" Phone="45" Tablet="50" />
         <OnIdiom x:Key="ButtonHeight" x:TypeArguments="x:Double" Phone="45" Tablet="50" />
+        <OnIdiom x:Key="BoxHeight" x:TypeArguments="x:Double" Phone="130" Tablet="195" />
+        <OnIdiom x:Key="CollectionHeight" x:TypeArguments="x:Double" Phone="300" Tablet="450" />
 
         <OnIdiom x:Key="DashboardColumnSize" x:TypeArguments="x:Double" Phone="100" Tablet="180" />
         <OnIdiom x:Key="DashboardColumnHeight" x:TypeArguments="x:Double" Phone="100" Tablet="180" />

@@ -22,8 +22,8 @@
     </NavigationPage.TitleView>
     <pages:CustomPage.Content>
         <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never">
-            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" BackgroundColor="{DynamicResource BlueColor}">
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" BackgroundColor="#337bb9">
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand">
                         <Label Text="Welcome :" TextColor="{DynamicResource White}" FontFamily="OpenSansBold"
                                FontSize="{DynamicResource FontSize18}" VerticalOptions="Center"
@@ -38,19 +38,76 @@
                                 HorizontalOptions="StartAndExpand" Padding="{OnPlatform Android='14,0,0,5',iOS='15,0,0,5'}"/>
                     </StackLayout>
                 </StackLayout>
-                <Grid RowSpacing="20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+               <Grid RowSpacing="20" ColumnSpacing="20" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <StackLayout Grid.Row="0" Padding="0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-                        <FlexLayout x:Name="DashboardItemsList" BindableLayout.ItemsSource="{Binding DashboardItems}"
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- <StackLayout Grid.Row="0" Grid.Column="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"> -->
+                    <!-- Item 1 -->
+                    <Border Grid.Row="0" Grid.Column="0"
+                            WidthRequest="130" HeightRequest="130"
+                            StrokeShape="RoundRectangle 15"
+                            BackgroundColor="#337bb9"
+                            HorizontalOptions="Center">
+                        <Label Text="Asset Code"
+                               TextColor="White"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding DashboardItemTapCommand}" CommandParameter="{Binding Source={RelativeSource AncestorType={x:Type pages:CustomPage}}, Path=BindingContext.DashboardItems[0]}" />
+                                </Border.GestureRecognizers>
+                    </Border>
+
+                    <!-- Item 2 -->
+                    <Border Grid.Row="0" Grid.Column="1"
+                            WidthRequest="130" HeightRequest="130"
+                            StrokeShape="RoundRectangle 15"
+                            BackgroundColor="#337bb9"
+                            HorizontalOptions="Center">
+                        <Label Text="Verify"
+                               TextColor="White"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding DashboardItemTapCommand}" CommandParameter="{Binding Source={RelativeSource AncestorType={x:Type pages:CustomPage}}, Path=BindingContext.DashboardItems[1]}" />
+                                </Border.GestureRecognizers>
+                    </Border>
+
+                    <!-- Item 3 (CENTERED across both columns) -->
+                    <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                            WidthRequest="130" HeightRequest="130"
+                            StrokeShape="RoundRectangle 15"
+                            BackgroundColor="#337bb9"
+                            HorizontalOptions="Center">
+                        <Label Text="General"
+                               TextColor="White"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"/>
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding DashboardItemTapCommand}" CommandParameter="{Binding Source={RelativeSource AncestorType={x:Type pages:CustomPage}}, Path=BindingContext.DashboardItems[2]}" />
+                                </Border.GestureRecognizers>
+                    </Border>
+            </Grid>
+
+                    <!-- <StackLayout Grid.Row="0" Grid.Column="0" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand"> -->
+                        <!-- <FlexLayout x:Name="DashboardItemsList" BindableLayout.ItemsSource="{Binding DashboardItems}"
                                 JustifyContent="Center" Wrap="Wrap" HorizontalOptions="CenterAndExpand"
-                                AlignContent="SpaceBetween" AlignItems="Center">
+                                AlignContent="SpaceEvenly" AlignItems="Start">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
-                                    <Border HorizontalOptions="CenterAndExpand" Padding="0" WidthRequest="130"
-                                            HeightRequest="130" Margin="5" StrokeShape="RoundRectangle 15,15,15,15"
+                                    <Border Padding="0" WidthRequest="{DynamicResource BoxHeight}" HeightRequest="{DynamicResource BoxHeight}" Margin="5" StrokeShape="RoundRectangle 15,15,15,15"
                                             VerticalOptions="CenterAndExpand" BackgroundColor="{Binding BgColor}">
                                         <Border.Shadow>
                                             <Shadow Radius="15" Offset="0, 10" Opacity="0.7" Brush="#19000000"/>
@@ -63,8 +120,33 @@
                                     </Border>
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
-                        </FlexLayout>
-                    </StackLayout>
+                        </FlexLayout> -->
+
+                        <!-- <CollectionView x:Name="DashboardItemsList" ItemsSource="{Binding DashboardItems}" 
+                                  SelectionMode="None" MaximumWidthRequest="{DynamicResource CollectionHeight}">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Span="2" Orientation="Vertical" VerticalItemSpacing="20" HorizontalItemSpacing="0"/>
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border WidthRequest="{DynamicResource BoxHeight}" HeightRequest="{DynamicResource BoxHeight}" HorizontalOptions="Center" 
+                                     VerticalOptions="Center" StrokeShape="RoundRectangle 20" BackgroundColor="{Binding BgColor}">
+                                        <Border.Shadow>
+                                            <Shadow Radius="15" Offset="0, 10" Opacity="0.7" Brush="#19000000"/>
+                                        </Border.Shadow>
+                                            <Label Text="{Binding Title}" TextColor="{DynamicResource White}" FontSize="12" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"
+                                                   FontFamily="OpenSansRegular" HorizontalOptions="Center"/>
+                                                <Border.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Source={x:Reference DashboardItemsList}, Path=BindingContext.DashboardItemTapCommand}" CommandParameter="{Binding .}" />
+                                                </Border.GestureRecognizers>
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView> -->
+                    <!-- </StackLayout> -->
+                    
+
+
                     <!--<StackLayout Grid.Row="1" Spacing="10" BackgroundColor="Transparent">
                     <StackLayout Orientation="Horizontal" Spacing="0">
                         <Label Text="Company Name : " HorizontalOptions="Start"
@@ -141,7 +223,6 @@
                        VerticalOptions="Center" Style="{DynamicResource LoginRegularLabel}"/>
                     </StackLayout>
                 </StackLayout>-->
-                </Grid>
             </StackLayout>
         </ScrollView>
     </pages:CustomPage.Content>

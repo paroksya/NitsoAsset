@@ -8,6 +8,24 @@
     <pages:CustomPage.Content>
         <StackLayout>
             <WebView x:Name="webView" Source="{Binding Url}" VerticalOptions="FillAndExpand"/>
+            <!-- <WebView x:Name="webView" Source="https://www.cetaphil.in/skin-analysis.html" VerticalOptions="FillAndExpand"/> -->
+            <!-- <WebView x:Name="webView" Source="https://image.online-convert.com/convert-to-jpg" VerticalOptions="FillAndExpand"/> -->
+            <!-- <WebView x:Name="webView" Source="https://webcamtests.com/" VerticalOptions="FillAndExpand"/> -->
+
+            <StackLayout x:Name="ErrorView"
+                         IsVisible="False"
+                         VerticalOptions="Center"
+                         HorizontalOptions="Center"
+                         Spacing="15">
+
+                <Label Text="Something went wrong"
+                       FontSize="18"
+                       TextColor="Black"
+                       HorizontalTextAlignment="Center"/>
+
+                <Button Text="Retry"
+                        Clicked="OnRetryClicked"/>
+            </StackLayout>
         </StackLayout>
     </pages:CustomPage.Content>
 </pages:CustomPage>

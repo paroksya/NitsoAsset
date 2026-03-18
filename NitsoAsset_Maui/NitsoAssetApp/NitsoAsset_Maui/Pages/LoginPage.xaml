@@ -128,7 +128,7 @@
                 <Border.Background>
                     <LinearGradientBrush EndPoint="0,1">
                         <GradientStop Color="#fff" Offset="0.1" />
-                        <GradientStop Color="{StaticResource BlueColor}" Offset="1" />
+                        <GradientStop Color="#337bb9" Offset="1" />
                     </LinearGradientBrush>
                 </Border.Background>
             </Border>
@@ -189,7 +189,7 @@
                                             </Label>
                                         </StackLayout>
                                     </StackLayout>
-                                    <Button Text="Login" BackgroundColor="#305363" Command="{Binding LoginCommand}" Style="{DynamicResource BlueButton}" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                    <Button Text="Login" BackgroundColor="#337bb9" Command="{Binding LoginCommand}" Style="{DynamicResource BlueButton}" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                                         <Button.Shadow Shades="{DynamicResource ButtonWhiteShadow}" CornerRadius="25">
                                         </Button.Shadow>
                                     </Button>

@@ -10,7 +10,8 @@ namespace NitsoAsset_Maui.Models.Enums
         ASSETCODE,
         SEARCH,
         VERIFY,
-        ADDASSET,
-        ASSETLIST
+        // ADDASSET,
+        // ASSETLIST,
+        ASSETGENERAL
     }
 }

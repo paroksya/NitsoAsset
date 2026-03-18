@@ -127,8 +127,9 @@ namespace NitsoAsset_Maui.ViewModels
                 tempDashboardItems.Add(new DashboardModel() { Title = "Asset Code", BgColor = Color.FromArgb("#003f4e"), DashboardNavType = DashboardEnums.ASSETCODE });
                 //tempDashboardItems.Add(new DashboardModel() { Title = "Search", BgColor = Color.FromHex("#eaf2fd"), DashboardNavType = DashboardEnums.SEARCH });
                 tempDashboardItems.Add(new DashboardModel() { Title = "Verify", BgColor = Color.FromArgb("#003f4e"), DashboardNavType = DashboardEnums.VERIFY });
-                tempDashboardItems.Add(new DashboardModel() { Title = "Add Asset", BgColor = Color.FromArgb("#003f4e"), DashboardNavType = DashboardEnums.ADDASSET });
-                tempDashboardItems.Add(new DashboardModel() { Title = "Asset List", BgColor = Color.FromArgb("#003f4e"), DashboardNavType = DashboardEnums.ASSETLIST });
+                tempDashboardItems.Add(new DashboardModel() { Title = "General", BgColor = Color.FromArgb("#003f4e"), DashboardNavType = DashboardEnums.ASSETGENERAL });
+                // tempDashboardItems.Add(new DashboardModel() { Title = "Add Asset", BgColor = Color.FromArgb("#003f4e"), DashboardNavType = DashboardEnums.ADDASSET });
+                // tempDashboardItems.Add(new DashboardModel() { Title = "Asset List", BgColor = Color.FromArgb("#003f4e"), DashboardNavType = DashboardEnums.ASSETLIST });
                 DashboardItems = new ObservableCollection<DashboardModel>(tempDashboardItems);
             }
             catch (Exception ex)
@@ -160,15 +161,20 @@ namespace NitsoAsset_Maui.ViewModels
                 {
                     await Navigation.NavigateToAsync<VerifyPageViewModel>();
                 }
-                else if (model.DashboardNavType == DashboardEnums.ADDASSET)
+                else if (model.DashboardNavType == DashboardEnums.ASSETGENERAL)
                 {
                     await RuntimePermission.RuntimePermissionCameraStatus();
                     await Navigation.NavigateToAsync<AddAssetPageViewModel>();
                 }
-                else if (model.DashboardNavType == DashboardEnums.ASSETLIST)
-                {
-                    await Navigation.NavigateToAsync<AssetListPageViewModel>();
-                }
+                // else if (model.DashboardNavType == DashboardEnums.ADDASSET)
+                // {
+                //     await RuntimePermission.RuntimePermissionCameraStatus();
+                //     await Navigation.NavigateToAsync<AddAssetPageViewModel>();
+                // }
+                // else if (model.DashboardNavType == DashboardEnums.ASSETLIST)
+                // {
+                //     await Navigation.NavigateToAsync<AssetListPageViewModel>();
+                // }
             }
             catch (Exception ex)
             {

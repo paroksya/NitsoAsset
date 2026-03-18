@@ -17,11 +17,43 @@ namespace NitsoAsset_Maui.Pages
         public AddAssetPage()
         {
             InitializeComponent();
+
+            webView.Navigating += WebView_Navigating;
+            webView.Navigated += WebView_Navigated;
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
+        }
+
+        private void WebView_Navigating(object sender, WebNavigatingEventArgs e)
+        {
+            // Show loader
+            ErrorView.IsVisible = false;
+            webView.IsVisible = false;
+        }
+
+        private void WebView_Navigated(object sender, WebNavigatedEventArgs e)
+        {
+            if (e.Result != WebNavigationResult.Success)
+            {
+                // Show error
+                ErrorView.IsVisible = true;
+                webView.IsVisible = false;
+            }
+            else
+            {
+                // Show webview
+                ErrorView.IsVisible = false;
+                webView.IsVisible = true;
+            }
+        }
+
+        private void OnRetryClicked(object sender, EventArgs e)
+        {
+            // Reload WebView
+            webView.Reload();
         }
     }
 }

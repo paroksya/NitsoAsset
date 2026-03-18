@@ -4,8 +4,10 @@ using Microsoft.Extensions.Logging;
 using Mopups.Hosting;
 using NitsoAsset_Maui.Assets.Controls;
 using ZXing.Net.Maui.Controls;
+
 //using NitsoAsset_Maui.Platforms.Android.Renderers;
 #if ANDROID
+using NitsoAsset_Maui.Platforms.Android.Renderers;
 using NitsoAsset_Maui.Platforms;
 #endif
 
@@ -50,14 +52,25 @@ namespace NitsoAsset_Maui
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 fonts.AddFont("OpenSans-SemiBoldItalic.ttf", "OpenSansSemiBoldItalic");
-            }).UseMauiCommunityToolkit();
+            })
+                  .ConfigureMauiHandlers(handlers =>
+        {
+#if ANDROID
+            handlers.AddHandler<Microsoft.Maui.Controls.WebView, CustomWebViewHandler>();
+#endif
+        })
 
-        //.ConfigureMauiHandlers(handlers =>
-        //{
-//#if ANDROID
-//            handlers.AddHandler<WebView, CustomWebViewRenderer>();
-//#endif
-//        });
+       //                 .ConfigureMauiHandlers(handlers =>
+       //                 {
+       // #if ANDROID
+       //                     handlers.AddHandler<Microsoft.Maui.Controls.WebView, CustomWebViewHandler>();
+       // #endif
+       //                 })
+
+
+       .UseMauiCommunityToolkit();
+
+
 
 
             Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(CustomEntry), (handler, view) =>
@@ -93,9 +106,52 @@ namespace NitsoAsset_Maui
             //    handlers.AddHandler(typeof(WebView), typeof(CustomWebViewHandler));
             //});
 
+
+
+            // ✅✅✅ ALTERNATIVE: Use ModifyMapping instead of AppendToMapping ✅✅✅
+            // #if ANDROID
+            //             Microsoft.Maui.Handlers.WebViewHandler.Mapper.ModifyMapping(
+            //                 nameof(Microsoft.Maui.IWebView.Source),
+            //                 (handler, view, previousAction) =>
+            //             {
+            //                 // First, call the previous/default action
+            //                 previousAction?.Invoke(handler, view);
+
+            //                 System.Diagnostics.Debug.WriteLine("🔵🔵🔵 WebView ModifyMapping CALLED (after Source set)! 🔵🔵🔵");
+
+            //                 var platformWebView = handler.PlatformView;
+
+            //                 // Check if already configured
+            //                 if (platformWebView.Tag?.ToString() == "configured")
+            //                 {
+            //                     System.Diagnostics.Debug.WriteLine("⏭️ Already configured, skipping...");
+            //                     return;
+            //                 }
+
+            //                 // Mark as configured
+            //                 platformWebView.Tag = new Java.Lang.String("configured");
+
+            //                 // Configure WebView settings
+            //                 platformWebView.Settings.JavaScriptEnabled = true;
+            //                 platformWebView.Settings.DomStorageEnabled = true;
+            //                 platformWebView.Settings.AllowFileAccess = true;
+            //                 platformWebView.Settings.AllowContentAccess = true;
+            //                 platformWebView.Settings.MediaPlaybackRequiresUserGesture = false;
+            //                 platformWebView.Settings.SetGeolocationEnabled(true);
+            //                 platformWebView.Settings.DatabaseEnabled = true;
+            //                 platformWebView.Settings.MixedContentMode = Android.Webkit.MixedContentHandling.AlwaysAllow;
+
+            //                 // ✅ Set custom WebChromeClient
+            //                 platformWebView.SetWebChromeClient(new CustomWebChromeClient());
+
+            //                 System.Diagnostics.Debug.WriteLine("🔵🔵🔵 CustomWebChromeClient SET via ModifyMapping! 🔵🔵🔵");
+            //             });
+            // #endif
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+
             return builder.Build();
 
         }

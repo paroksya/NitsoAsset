@@ -32,14 +32,16 @@ namespace NitsoAsset_Maui.ViewModels
 
         public AddAssetPageViewModel(INavigationService navigationService, CustomProxy customProxy, IAppUtility appUtility) : base(navigationService, customProxy, appUtility)
         {
-            Title = "Add Asset";
+            Title = "GENERAL";
             _navigationService = navigationService;
             SetUpURL();
         }
 
         public void SetUpURL()
         {
-            string BaseURL = "https://assetspecialist.in/Acquisition1/acquisitionIndex1";
+            // Old. string BaseURL = "https://assetspecialist.in/Acquisition1/acquisitionIndex1";
+
+            string BaseURL = "https://assetspecialist.in/Asset_General/GeneralIndex";
             string cc = Settings.UserDetails.comp_code;
             int uid = Settings.UserDetails.user_pid; 
             string queryString = $"?cc={cc}&uid={uid}";

@@ -7,6 +7,21 @@
     <pages:CustomPage.Content>
         <StackLayout>
             <WebView x:Name="webView" Source="{Binding Url}" VerticalOptions="FillAndExpand"/>
+
+            <StackLayout x:Name="ErrorView"
+                         IsVisible="False"
+                         VerticalOptions="Center"
+                         HorizontalOptions="Center"
+                         Spacing="15">
+
+                <Label Text="Something went wrong"
+                       FontSize="18"
+                       TextColor="Black"
+                       HorizontalTextAlignment="Center"/>
+
+                <Button Text="Retry"
+                        Clicked="OnRetryClicked"/>
+            </StackLayout>
         </StackLayout>
     </pages:CustomPage.Content>
 </pages:CustomPage>
