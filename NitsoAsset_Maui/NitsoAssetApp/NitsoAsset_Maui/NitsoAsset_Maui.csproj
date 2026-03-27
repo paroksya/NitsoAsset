@@ -24,7 +24,7 @@
 		<ApplicationTitle>NitsoAsset</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.nitsoasset_maui</ApplicationId>
+		<ApplicationId>com.nitso.nitsoassetapp</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -42,12 +42,14 @@
 
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|AnyCPU'">
-		<AndroidSigningKeyStore>/Users/paroksya/Documents/Projects/NitsoAssetApp_New/Android_KeyStore/NistoAsset.keystore</AndroidSigningKeyStore>
+		<!-- <AndroidSigningKeyStore>/Users/paroksya/Documents/Projects/NitsoAssetApp_New/Android_KeyStore/NistoAsset.keystore</AndroidSigningKeyStore> -->
+		<AndroidSigningKeyStore>/Users/paroksya/Documents/Projects/NitsoAssetApp_New/NitsoAsset_Maui/NitsoAssetApp/Android_KeyStore/NistoAsset.keystore</AndroidSigningKeyStore>
 		<AndroidSigningStorePass>123456</AndroidSigningStorePass>
 		<AndroidSigningKeyAlias>NistoAsset</AndroidSigningKeyAlias>
 		<AndroidSigningKeyPass>123456</AndroidSigningKeyPass>
 	  	<AndroidPackageFormat>aab</AndroidPackageFormat>
 		<AndroidEnablePageSize16KB>true</AndroidEnablePageSize16KB>
+		<!-- <AndroidSupportedAbis>armeabi-v7a;arm64-v8a;x86;x86_64</AndroidSupportedAbis> -->
 	</PropertyGroup>
 
 
@@ -61,6 +63,7 @@
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 	  <WarningLevel>4</WarningLevel>
+	  	<AndroidSupportedAbis>armeabi-v7a;arm64-v8a;x86;x86_64</AndroidSupportedAbis>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-maccatalyst|AnyCPU'">
 	  <CreatePackage>false</CreatePackage>
