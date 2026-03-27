@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <pages:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups" 
@@ -6,7 +6,7 @@
                  xmlns:converters="clr-namespace:NitsoAsset_Maui.Assets.Converters;assembly=NitsoAsset_Maui"
                  xmlns:controls="clr-namespace:NitsoAsset_Maui.Assets.Controls"
                  CloseWhenBackgroundIsClicked="false"
-                 x:Class="NitsoAsset_Maui.Pages.Popups.InvalidQRCodePopup">
+                 x:Class="NitsoAsset_Maui.Pages.Popups.InvalidQRCodePopup" Background="Transparent">
     <!--todo <pages:PopupPage.HasSystemPadding>
         <OnPlatform x:TypeArguments="x:Boolean">
             <OnPlatform.iOS>true</OnPlatform.iOS>
@@ -19,7 +19,7 @@
         <animations:FadeAnimation DurationIn="300" DurationOut="300" EasingIn="SinOut" EasingOut="SinIn" HasBackgroundAnimation="true" />
     </pages:PopupPage.Animation>
     <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Margin="0" Spacing="0">
-        <Frame IsClippedToBounds="true" BackgroundColor="White" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="false" Margin="{OnIdiom Phone='40',Tablet='45'}" Padding="0" CornerRadius="{OnIdiom Phone='8',Tablet='12'}">
+        <Frame IsClippedToBounds="true" BackgroundColor="#ebebeb" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HasShadow="false" Margin="{OnIdiom Phone='40',Tablet='45'}" Padding="0" CornerRadius="{OnIdiom Phone='8',Tablet='12'}">
             <StackLayout IsClippedToBounds="true" Spacing="15" Padding="20">
                 <Label Text="{Binding ConfirmTitle}" IsVisible="{Binding ConfirmTitle, Converter={converters:LabelVisibilityConverter}}" Style="{DynamicResource BoldLabel}" FontSize="{DynamicResource FontSize18}"/>
                 
