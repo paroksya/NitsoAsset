@@ -342,3 +342,6 @@ healthchecksdb
 
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 MigrationBackup/
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore
