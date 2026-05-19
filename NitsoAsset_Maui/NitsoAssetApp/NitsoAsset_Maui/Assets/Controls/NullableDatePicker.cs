@@ -68,7 +68,7 @@ namespace NitsoAsset_Maui.Assets.Controls
         {
             base.OnPropertyChanged(propertyName);
 
-            if (propertyName == DateProperty.PropertyName || (propertyName == IsFocusedProperty.PropertyName && !IsFocused && (Date.ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy"))))
+            if (propertyName == DateProperty.PropertyName || (propertyName == IsFocusedProperty.PropertyName && !IsFocused && (Date?.ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy"))))
             {
                 AssignValue();
             }
@@ -76,7 +76,7 @@ namespace NitsoAsset_Maui.Assets.Controls
             if (propertyName == NullableDateProperty.PropertyName && NullableDate.HasValue)
             {
                 Date = NullableDate.Value;
-                if (Date.ToString(_originalFormat) == DateTime.Now.ToString(_originalFormat))
+                if (Date?.ToString("dd/MM/yyyy") == DateTime.Now.ToString("dd/MM/yyyy"))
                 {
                     //this code was done because when date selected is the actual date the"DateProperty" does not raise  
                     UpdateDate();
