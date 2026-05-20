@@ -1,4 +1,5 @@
-﻿using Controls.UserDialogs.Maui;
+﻿// using Android.Systems;
+using Controls.UserDialogs.Maui;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Compatibility;
@@ -47,6 +48,7 @@ namespace NitsoAsset_Maui.ViewModels
             get { return _isTorch; }
             set { _isTorch = value; OnPropertyChanged(); }
         }
+        private bool _isPopupShow = false;
         private bool _isHandlingScan = false;
         PopupPage _invalidQRCodePopup { get; set; }
         InvalidQRCodePopupViewModel _invalidQRCodePopupContext { get; set; }
@@ -133,12 +135,20 @@ namespace NitsoAsset_Maui.ViewModels
                     AssetCodeDetail = AssetByCodeResult.Response;
 
                     Navigation.RemoveFromNavigationStack<VerifyPageViewModel>();
+                    await Navigation.ClosePopup();
                     await Navigation.NavigateToAsync<VerifyPageViewModel>(AssetCodeDetail);
                     Navigation.RemoveFromNavigationStack<QRcodeScannerPageViewModel>();
+                    _isPopupShow = false;
                 }
                 else
                 {
-                    await ShowInvalidQRPopup();
+                    if (!_isPopupShow)
+                    {
+                        _isPopupShow = true;
+                        await ShowInvalidQRPopup();
+                    }
+                     // _isPopupShow = false;
+                    // await ShowInvalidQRPopup();
                 }
             }
             catch (Exception ex)
@@ -167,8 +177,9 @@ namespace NitsoAsset_Maui.ViewModels
                     { "CancelBtnText", "CANCEL" },
                     { "ConfirmBtnText", "YES" },
                     { "ConfirmArgs", null},
-                    { "ConfirmCommand", new Command(async () => { IsAnalyzing = true; })},
-                    { "CancelCommand", new Command(async () => { IsAnalyzing = false; })}
+                    { "ConfirmCommand", new Command(async () => { IsAnalyzing = true; _isPopupShow = false; })},
+                    { "CancelCommand", new Command(async () => { IsAnalyzing = false; 
+                    })}
                 };
 
                 await Navigation.ShowPopup<InvalidQRCodePopupViewModel>(confirmPopupParams);

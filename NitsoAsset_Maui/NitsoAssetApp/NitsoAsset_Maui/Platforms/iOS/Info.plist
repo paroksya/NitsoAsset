@@ -33,7 +33,7 @@
 		<string>fetch</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>11.0</string>
+	<string>12.2</string>
 	<key>CFBundleDisplayName</key>
 	<string>NitsoAssetApp</string>
 	<key>UILaunchStoryboardName</key>
@@ -49,5 +49,7 @@
 	<string>1.1</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.nitso.nitsoassetapp</string>
 </dict>
 </plist>

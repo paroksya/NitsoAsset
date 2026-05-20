@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <pages:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  xmlns:pages="clr-namespace:Mopups.Pages;assembly=Mopups"
@@ -30,7 +30,7 @@
                     <Label Text="Cancel" TextColor="{DynamicResource White}" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="OpenSansBold"/>
                 </Border>
                 <Border Grid.Column="1" BackgroundColor="#e07c5c" Shadow="{DynamicResource ButtonBlackShadow}" Padding="0" HeightRequest="45" Style="{DynamicResource PopUpButtonStyle}" Margin="0">
-                    <Label Text="Confirm" TextColor="{DynamicResource Black}" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="OpenSansBold"/>
+                    <Label Text="Confirm" TextColor="{DynamicResource White}" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="OpenSansBold"/>
                     <Border.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ConfirmCommand}"/>
                     </Border.GestureRecognizers>
