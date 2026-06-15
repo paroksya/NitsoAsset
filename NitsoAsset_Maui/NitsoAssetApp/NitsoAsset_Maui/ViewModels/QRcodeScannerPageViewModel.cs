@@ -111,12 +111,15 @@ namespace NitsoAsset_Maui.ViewModels
         }
 
         #region Methods
+
+        private bool _isProcessing;
         public static EventHandler<ZXing.Net.Maui.BarcodeDetectionEventArgs> HandleQRcodeScannerEvent { get; set; }
         public async void HandleQRcodeScanner(object sender, ZXing.Net.Maui.BarcodeDetectionEventArgs obj)
         {
             if (_isHandlingScan)
                 return;
 
+            _isHandlingScan = true;
             IsAnalyzing = false;
             try
             {
@@ -126,34 +129,40 @@ namespace NitsoAsset_Maui.ViewModels
                 AssetRequestModel model = new AssetRequestModel();
                 model.assetcode = obj.Results.FirstOrDefault().Value;
                 model.CompanyCode = Settings.CompanyCode; //"demo1";
-
-                UserDialogs.Instance.Loading("Loading....");
-                var AssetByCodeResult = await CustomProxy.SearchAssetByCode(model);
-                if (AssetByCodeResult != null && AssetByCodeResult.Response != null)
+                var safeValue = scannedValue.Split(',')[0];
+                // UserDialogs.Instance.Loading("Loading....");
+                await MainThread.InvokeOnMainThreadAsync(async () =>
                 {
-                    Asset AssetCodeDetail = new Asset();
-                    AssetCodeDetail = AssetByCodeResult.Response;
+                    await Navigation.NavigateToAsync<VerifyPageViewModel>(safeValue);
+                });
+                Navigation.RemoveFromNavigationStack<QRcodeScannerPageViewModel>();
+                // var AssetByCodeResult = await CustomProxy.SearchAssetByCode(model);
+                // if (AssetByCodeResult != null && AssetByCodeResult.Response != null)
+                // {
+                //     Asset AssetCodeDetail = new Asset();
+                //     AssetCodeDetail = AssetByCodeResult.Response;
 
-                    Navigation.RemoveFromNavigationStack<VerifyPageViewModel>();
-                    await Navigation.ClosePopup();
-                    await Navigation.NavigateToAsync<VerifyPageViewModel>(AssetCodeDetail);
-                    Navigation.RemoveFromNavigationStack<QRcodeScannerPageViewModel>();
-                    _isPopupShow = false;
-                }
-                else
-                {
-                    if (!_isPopupShow)
-                    {
-                        _isPopupShow = true;
-                        await ShowInvalidQRPopup();
-                    }
-                     // _isPopupShow = false;
-                    // await ShowInvalidQRPopup();
-                }
+                //     Navigation.RemoveFromNavigationStack<VerifyPageViewModel>();
+                //     // await Navigation.ClosePopup();
+                //     await Navigation.NavigateToAsync<VerifyPageViewModel>(AssetCodeDetail);
+                //     Navigation.RemoveFromNavigationStack<QRcodeScannerPageViewModel>();
+                //     // _isPopupShow = false;
+                // }
+                // else
+                // {
+                // if (!_isPopupShow)
+                // {
+                //     _isPopupShow = true;
+                //     await ShowInvalidQRPopup();
+                // }
+                // _isPopupShow = false;
+                // await ShowInvalidQRPopup();
+                // }
             }
             catch (Exception ex)
             {
-                await Navigation.ShowPopup<AlertPopupViewModel>("Invalid QR code");
+                // await Navigation.ShowPopup<AlertPopupViewModel>("Invalid QR code");
+                _isHandlingScan = false;
                 IsAnalyzing = true;
             }
             finally
@@ -178,7 +187,7 @@ namespace NitsoAsset_Maui.ViewModels
                     { "ConfirmBtnText", "YES" },
                     { "ConfirmArgs", null},
                     { "ConfirmCommand", new Command(async () => { IsAnalyzing = true; _isPopupShow = false; })},
-                    { "CancelCommand", new Command(async () => { IsAnalyzing = false; 
+                    { "CancelCommand", new Command(async () => { IsAnalyzing = false;
                     })}
                 };
 

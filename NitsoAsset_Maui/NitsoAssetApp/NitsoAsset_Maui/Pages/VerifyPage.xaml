@@ -50,6 +50,8 @@
                             HorizontalOptions="FillAndExpand" VerticalOptions="Start" />
                 </StackLayout>
                 <StackLayout IsVisible="{Binding IsVerifiedSuccess}" Spacing="0">
+                    <!-- <Label Text="Verified Successfully" HorizontalOptions="Start" FontAttributes="Bold"
+                               VerticalOptions="Center" TextColor="Green" Style="{DynamicResource LoginRegularLabel}"/> -->
                     <Label Text="Verified Successfully" HorizontalOptions="Start" FontAttributes="Bold"
                                VerticalOptions="Center" TextColor="Green" Style="{DynamicResource LoginRegularLabel}"/>
                 </StackLayout>
