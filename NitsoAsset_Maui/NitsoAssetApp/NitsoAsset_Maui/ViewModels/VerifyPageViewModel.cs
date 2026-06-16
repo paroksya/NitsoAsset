@@ -24,6 +24,13 @@ namespace NitsoAsset_Maui.ViewModels
         CustomProxy _customProxy { get; }
         public Page VerifyPage { get; set; }
 
+        ValidatableObject<string> _verificationQRCodeDescription = new ValidatableObject<string>();
+        public ValidatableObject<string> VerificationQRCodeDescription
+        {
+            get { return _verificationQRCodeDescription; }
+            set { _verificationQRCodeDescription = value; OnPropertyChanged(); }
+        }
+
         ValidatableObject<string> _verificationAssetCode = new ValidatableObject<string>();
         public ValidatableObject<string> VerificationAssetCode
         {
@@ -50,6 +57,13 @@ namespace NitsoAsset_Maui.ViewModels
         {
             get { return _isStackVisible; }
             set { _isStackVisible = value; OnPropertyChanged(); }
+        }
+
+        bool _isVerificationQRCodeDescriptionError = false;
+        public bool IsVerificationQRCodeDescriptionError
+        {
+            get { return _isVerificationQRCodeDescriptionError; }
+            set { _isVerificationQRCodeDescriptionError = value; OnPropertyChanged(); }
         }
 
         bool _isVerificationAssetCodeError = false;
@@ -79,8 +93,6 @@ namespace NitsoAsset_Maui.ViewModels
             get { return _isVerifiedSuccess; }
             set { _isVerifiedSuccess = value; OnPropertyChanged(); }
         }
-
-
 
         private string _validationMessage;
         public string ValidationMessage
@@ -169,7 +181,9 @@ namespace NitsoAsset_Maui.ViewModels
             // QR Scanner value
             if (args is string barcode)
             {
-                VerificationAssetCode.Value = barcode;
+                var safeValue = barcode.Split(',')[0];
+                VerificationQRCodeDescription.Value = barcode;
+                VerificationAssetCode.Value = safeValue;
                 return;
             }
             if (args is Asset asset)
@@ -196,6 +210,7 @@ namespace NitsoAsset_Maui.ViewModels
         {
             try
             {
+                _verificationQRCodeDescription.Validations.Add(new IsNotNullOrEmptyValidationRule<string> { ValidationMessage = "Verification QR Code Description is required" });
                 _verificationAssetCode.Validations.Add(new IsNotNullOrEmptyValidationRule<string> { ValidationMessage = "Verification Asset Code is required" });
                 _verificationAssetCodeRemark.Validations.Add(new IsNotNullOrEmptyValidationRule<string> { ValidationMessage = "Verification remark is required" });
             }
@@ -223,8 +238,9 @@ namespace NitsoAsset_Maui.ViewModels
             {
                 IsStackVisible = false;
                 IsVerifiedSuccess = false;
-                if (string.IsNullOrEmpty(VerificationAssetCode.Value) && string.IsNullOrWhiteSpace(VerificationAssetCodeRemark.Value) && await HandleInternetConnection())
+                if (string.IsNullOrEmpty(VerificationQRCodeDescription.Value) && string.IsNullOrEmpty(VerificationAssetCode.Value) && string.IsNullOrWhiteSpace(VerificationAssetCodeRemark.Value) && await HandleInternetConnection())
                 {
+                    IsVerificationQRCodeDescriptionError = true;
                     IsVerificationAssetCodeError = true;
                     IsVerificationAssetCodeRemarkError = true;
                     IsVerificationAssetCodeErrorVisibleForGet = false;
@@ -232,8 +248,19 @@ namespace NitsoAsset_Maui.ViewModels
                     IsStackVisible = false;
                     return;
                 }
+                else if (string.IsNullOrWhiteSpace(VerificationQRCodeDescription.Value))
+                {
+                    IsVerificationQRCodeDescriptionError = true;
+                    IsVerificationAssetCodeError = false;
+                    IsVerificationAssetCodeRemarkError = false;
+                    IsVerificationAssetCodeErrorVisibleForGet = false;
+                    IsVerifiedSuccess = false;
+                    IsStackVisible = false;
+                    return;
+                }
                 else if (string.IsNullOrWhiteSpace(VerificationAssetCode.Value))
                 {
+                    IsVerificationQRCodeDescriptionError = false;
                     IsVerificationAssetCodeError = true;
                     IsVerificationAssetCodeRemarkError = false;
                     IsVerificationAssetCodeErrorVisibleForGet = false;
@@ -243,6 +270,7 @@ namespace NitsoAsset_Maui.ViewModels
                 }
                 else if (string.IsNullOrWhiteSpace(VerificationAssetCodeRemark.Value))
                 {
+                    IsVerificationQRCodeDescriptionError = false;
                     IsVerificationAssetCodeError = false;
                     IsVerificationAssetCodeRemarkError = true;
                     IsVerificationAssetCodeErrorVisibleForGet = false;
@@ -253,6 +281,7 @@ namespace NitsoAsset_Maui.ViewModels
                 else
                 {
                     IsVerifiedSuccess = false;
+                    IsVerificationQRCodeDescriptionError = false;
                     IsVerificationAssetCodeError = false;
                     IsVerificationAssetCodeRemarkError = false;
                     IsVerificationAssetCodeErrorVisibleForGet = false;
@@ -262,12 +291,13 @@ namespace NitsoAsset_Maui.ViewModels
                     VerificationAssetRequestModel model = new VerificationAssetRequestModel();
                     model.assetcode = VerificationAssetCode.Value;
                     model.CompanyCode = Settings.CompanyCode; //"demo1";
+                    model.qrcodedescription = VerificationQRCodeDescription.Value;
                     model.verificationremarks = VerificationAssetCodeRemark.Value;
                     model.verificationdoneby = Settings.UserName; //"admin";
 
                     UserDialogs.Instance.Loading("Loading....");
                     var VerificationAssetByCodeResult = await CustomProxy.VerificationAssetByCode(model);
-                    if (VerificationAssetByCodeResult != null && VerificationAssetByCodeResult.Response != null && VerificationAssetByCodeResult.Response == true)
+                    if (VerificationQRCodeDescription.Value != null && VerificationAssetByCodeResult != null && VerificationAssetByCodeResult.Response != null && VerificationAssetByCodeResult.Response == true)
                     {
                         //await Navigation.ShowPopup<AlertPopupViewModel>(VerificationAssetByCodeResult.ResponseMessage);
                         //await Navigation.ShowPopup<AlertVerificationPopupViewModel>();
@@ -302,6 +332,7 @@ namespace NitsoAsset_Maui.ViewModels
                 if (string.IsNullOrEmpty(VerificationAssetCode.Value) && string.IsNullOrWhiteSpace(VerificationAssetCode.Value))
                 {
                     IsVerificationAssetCodeErrorVisibleForGet = true;
+                    IsVerificationQRCodeDescriptionError = false;
                     IsVerificationAssetCodeError = false;
                     IsVerificationAssetCodeRemarkError = false;
                     IsVerifiedSuccess = false;
@@ -311,12 +342,13 @@ namespace NitsoAsset_Maui.ViewModels
                 else
                 {
                     IsVerificationAssetCodeErrorVisibleForGet = false;
+                    IsVerificationQRCodeDescriptionError = false;
                     IsVerificationAssetCodeError = false;
                     IsVerificationAssetCodeRemarkError = false;
                     AssetRequestModel model = new AssetRequestModel();
                     model.assetcode = VerificationAssetCode.Value;
                     model.CompanyCode = Settings.CompanyCode; //"demo1";
-
+                    model.qrcodedescription = VerificationQRCodeDescription.Value;
                     UserDialogs.Instance.Loading("Loading....");
                     var AssetByCodeResult = await CustomProxy.SearchAssetByCode(model);
                     if (AssetByCodeResult != null && AssetByCodeResult.Response != null)
@@ -352,6 +384,7 @@ namespace NitsoAsset_Maui.ViewModels
                 // VerificationAssetCode.Value = scannedValue;
 
                 AssetRequestModel model = new AssetRequestModel();
+                model.qrcodedescription = obj.Results.FirstOrDefault().Value;
                 model.assetcode = obj.Results.FirstOrDefault().Value;
                 model.CompanyCode = Settings.CompanyCode; //"demo1";
 
@@ -386,16 +419,18 @@ namespace NitsoAsset_Maui.ViewModels
 
         internal void ClearUserData()
         {
+            VerificationQRCodeDescription.Value = string.Empty;
             VerificationAssetCode.Value = string.Empty;
             VerificationAssetCodeRemark.Value = string.Empty;
         }
 
         internal Boolean Validate()
         {
+            var verificationqrcodedescription = this.VerificationQRCodeDescription.Validate();
             var verificationassetcodeValidation = this.VerificationAssetCode.Validate();
             var verificationassetcoderemarkValidation = this.VerificationAssetCodeRemark.Validate();
 
-            return verificationassetcodeValidation && verificationassetcoderemarkValidation;
+            return verificationqrcodedescription && verificationassetcodeValidation && verificationassetcoderemarkValidation;
         }
         #endregion
     }

@@ -129,11 +129,11 @@ namespace NitsoAsset_Maui.ViewModels
                 AssetRequestModel model = new AssetRequestModel();
                 model.assetcode = obj.Results.FirstOrDefault().Value;
                 model.CompanyCode = Settings.CompanyCode; //"demo1";
-                var safeValue = scannedValue.Split(',')[0];
+                // var safeValue = scannedValue.Split(',')[0];
                 // UserDialogs.Instance.Loading("Loading....");
                 await MainThread.InvokeOnMainThreadAsync(async () =>
                 {
-                    await Navigation.NavigateToAsync<VerifyPageViewModel>(safeValue);
+                    await Navigation.NavigateToAsync<VerifyPageViewModel>(scannedValue);
                 });
                 Navigation.RemoveFromNavigationStack<QRcodeScannerPageViewModel>();
                 // var AssetByCodeResult = await CustomProxy.SearchAssetByCode(model);

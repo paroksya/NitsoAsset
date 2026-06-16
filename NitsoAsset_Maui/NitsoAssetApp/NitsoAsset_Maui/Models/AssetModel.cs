@@ -7,6 +7,7 @@ namespace NitsoAsset_Maui.Models
 {
     public class AssetRequestModel
     {
+        public string qrcodedescription { get; set; }
         public string assetcode { get; set; }
         public string CompanyCode { get; set; }
     }
