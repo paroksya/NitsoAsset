@@ -80,7 +80,7 @@ namespace NitsoAsset_Maui.Pages
                     // ResultLabel.Text = barcodeView
                     if (previousdata != first.Value)
                     {
-                        previousdata = first.Value;
+                        previousdata = first.Value; 
                         QRcodeScannerPageViewModel.HandleQRcodeScannerEvent?.Invoke(this, e);
                     }
                 });

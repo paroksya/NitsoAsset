@@ -10,6 +10,17 @@
                   NavigationPage.HasNavigationBar="True"
                   Title="{Binding Title}"
                   x:Class="NitsoAsset_Maui.Pages.VerifyPage">
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Background="Transparent" Margin="0,0,15,0">
+            <Label Text="Scan" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" FontSize="16" TextColor="White" />
+            <ImageButton Source="Scanner" HeightRequest="25" WidthRequest="25" HorizontalOptions="Start"
+                         VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Command="{Binding ScanCommand}">
+            </ImageButton>
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding ScanCommand}" />
+            </StackLayout.GestureRecognizers>
+        </StackLayout>
+    </NavigationPage.TitleView>
     <pages:CustomPage.Content>
         <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <StackLayout Spacing="15" Padding="20" Style="{DynamicResource Default}">
@@ -17,10 +28,10 @@
                     <StackLayout.Shadow>
                         <Shadow Radius="15" Offset="0, 10" Opacity="0.7" Brush= "#19000000"/>
                     </StackLayout.Shadow>
-                    <ImageButton Source="qrcode" HorizontalOptions="Center" VerticalOptions="Center"
+                    <!-- <ImageButton Source="qrcode" HorizontalOptions="Center" VerticalOptions="Center"
                                  CornerRadius="15" Padding="10" HeightRequest="100" WidthRequest="100"
                                  BackgroundColor="{DynamicResource BlueColor}"
-                                 Command="{Binding ScanCommand}" />
+                                 Command="{Binding ScanCommand}" /> -->
                     <Grid RowSpacing="10">
                         <Grid.RowDefinitions> 
                             <RowDefinition Height="Auto"/>

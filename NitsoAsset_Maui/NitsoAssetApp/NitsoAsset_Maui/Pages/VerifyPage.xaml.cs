@@ -4,6 +4,7 @@ using NitsoAsset_Maui.Pages.Base;
 using Microsoft.Maui.Controls.Compatibility;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui;
+using NitsoAsset_Maui.ViewModels;
 
 namespace NitsoAsset_Maui.Pages
 {
