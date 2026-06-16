@@ -11,7 +11,8 @@
                   Title="{Binding Title}"
                   x:Class="NitsoAsset_Maui.Pages.VerifyPage">
     <NavigationPage.TitleView>
-        <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" Background="Transparent" Margin="0,0,15,0">
+        <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="Fill" VerticalOptions="CenterAndExpand" Background="Transparent" Margin="0,0,15,0">
+            <Label Text="Verify" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="16" TextColor="White" />
             <Label Text="Scan" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" FontSize="16" TextColor="White" />
             <ImageButton Source="Scanner" HeightRequest="25" WidthRequest="25" HorizontalOptions="Start"
                          VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Command="{Binding ScanCommand}">
