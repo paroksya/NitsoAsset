@@ -4,6 +4,7 @@
                   xmlns:pages="clr-namespace:NitsoAsset_Maui.Pages.Base;assembly=NitsoAsset_Maui"
                   xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
                   xmlns:controls="clr-namespace:NitsoAsset_Maui.Assets.Controls"
+                  xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
                   xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
                   xmlns:converters="clr-namespace:NitsoAsset_Maui.Assets.Converters"
                   ios:Page.UseSafeArea="true"
@@ -14,8 +15,11 @@
         <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="Fill" VerticalOptions="CenterAndExpand" Background="Transparent" Margin="0,0,15,0">
             <Label Text="Verify" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="16" TextColor="White" />
             <Label Text="Scan" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" FontSize="16" TextColor="White" />
-            <ImageButton Source="Scanner" HeightRequest="25" WidthRequest="25" HorizontalOptions="Start"
+            <ImageButton Source="Scanner" HeightRequest="30" WidthRequest="30" HorizontalOptions="Start"
                          VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Command="{Binding ScanCommand}">
+                         <ImageButton.Behaviors>
+                            <toolkit:IconTintColorBehavior TintColor="#FFF" />
+                         </ImageButton.Behaviors>
             </ImageButton>
             <StackLayout.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding ScanCommand}" />
