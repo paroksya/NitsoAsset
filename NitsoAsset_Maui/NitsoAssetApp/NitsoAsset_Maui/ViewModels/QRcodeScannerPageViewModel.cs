@@ -133,6 +133,7 @@ namespace NitsoAsset_Maui.ViewModels
                 // UserDialogs.Instance.Loading("Loading....");
                 await MainThread.InvokeOnMainThreadAsync(async () =>
                 {
+                    Navigation.RemoveFromNavigationStack<VerifyPageViewModel>();//Note , remove last verify page which has no data and open new verify page with data
                     await Navigation.NavigateToAsync<VerifyPageViewModel>(scannedValue);
                 });
                 Navigation.RemoveFromNavigationStack<QRcodeScannerPageViewModel>();

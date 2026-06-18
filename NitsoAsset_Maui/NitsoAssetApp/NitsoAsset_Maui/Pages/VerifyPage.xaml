@@ -12,11 +12,11 @@
                   Title="{Binding Title}"
                   x:Class="NitsoAsset_Maui.Pages.VerifyPage">
     <NavigationPage.TitleView>
-        <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="Fill" VerticalOptions="CenterAndExpand" Background="Transparent" Margin="0,0,15,0">
+        <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="Fill" VerticalOptions="CenterAndExpand" Padding="{OnPlatform Android='0,0,15,0',iOS='0,0,5,0'}" >
             <Label Text="Verify" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" FontSize="16" TextColor="White" />
             <Label Text="Scan" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" FontSize="16" TextColor="White" />
-            <ImageButton Source="Scanner" HeightRequest="30" WidthRequest="30" HorizontalOptions="Start"
-                         VerticalOptions="CenterAndExpand" BackgroundColor="Transparent" Command="{Binding ScanCommand}">
+            <ImageButton Source="scanner" HeightRequest="30" WidthRequest="30" HorizontalOptions="Start" Aspect="AspectFill" Padding="0"
+                         VerticalOptions="CenterAndExpand"  Command="{Binding ScanCommand}">
                          <ImageButton.Behaviors>
                             <toolkit:IconTintColorBehavior TintColor="#FFF" />
                          </ImageButton.Behaviors>
@@ -56,7 +56,7 @@
                         </VerticalStackLayout >
                         <VerticalStackLayout Grid.Row="1" Spacing="0">
                             <Label Text="Verification Asset Code" FontFamily="OpenSansRegular" Style="{DynamicResource LoginSemiBoldLabel}" />
-                            <controls:CustomEntry Text="{Binding VerificationAssetCode.Value}" Placeholder="Verify Asset Code"
+                            <controls:CustomEntry Text="{Binding VerificationAssetCode.Value}" Placeholder="Verify Asset Code" Margin="5,0"
                                                   FontSize="16" Style="{DynamicResource LoginEntryStyle}">
                             </controls:CustomEntry>
                             <BoxView BackgroundColor="{DynamicResource Gray}" HeightRequest="1" HorizontalOptions="FillAndExpand" />
